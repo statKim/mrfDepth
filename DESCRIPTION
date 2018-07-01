@@ -1,7 +1,7 @@
 Package: mrfDepth
 Type: Package
-Version: 1.0.6
-Date: 2017-11-20
+Version: 1.0.7
+Date: 2018-07-01
 Title: Depth Measures in Multivariate, Regression and Functional
         Settings
 Description: Tools to compute depth measures and implementations of related 
@@ -25,7 +25,7 @@ LazyLoad: yes
 URL: https://github.com/PSegaert/mrfDepth
 BugReports: https://github.com/PSegaert/mrfDepth/issues
 NeedsCompilation: yes
-Packaged: 2017-11-23 19:09:52 UTC; Pieter Segaert
+Packaged: 2018-07-01 16:58:49 UTC; Pieter Segaert
 Author: Pieter Segaert [aut, cre],
   Mia Hubert [aut],
   Peter Rousseeuw [aut],
@@ -33,4 +33,4 @@ Author: Pieter Segaert [aut, cre],
   Kaveh Vakili [ctb]
 Maintainer: Pieter Segaert <Pieter.Segaert@kuleuven.be>
 Repository: CRAN
-Date/Publication: 2017-11-23 21:02:24 UTC
+Date/Publication: 2018-07-01 17:50:03 UTC

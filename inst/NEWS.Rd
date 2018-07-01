@@ -2,6 +2,23 @@
 \title{News for package "mrfDepth"}
 \encoding{UTF-8}
 
+
+\section{Changes in version 1.0.7 (2017-12-01)}{
+\itemize{
+    \item Feature: Added functional data examples of MFOD / MFC paper: 
+                   characterA,
+                   characterI,
+                   mri,
+                   plane,
+                   tables,
+                   wine
+                   
+    \item MISC: Documentation of random number generator 
+                for normal distribution used by FORTRAN code.
+ }
+}
+
+
 \section{Changes in version 1.0.6 (2017-11-20)}{
 \itemize{
     \item BUGFIX: Changed internal call
