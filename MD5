@@ -1,4 +1,4 @@
-6f939c995b0825a4be99c0e088e31c87 *DESCRIPTION
+5fa946b2d592fffd25f53a9de3a674ae *DESCRIPTION
 ed175966a8965997266a5a88d5d1b830 *NAMESPACE
 1585d71876f3a1d586c7f71c1cee1c3f *R/Misc.R
 628883b492aa21f9e712588a61436989 *R/adjOutl.R
@@ -7,13 +7,13 @@ ed175966a8965997266a5a88d5d1b830 *NAMESPACE
 a36a49a52964ada2e1d001708e5a02d8 *R/cmltest.R
 9d62651cba7f373f171c6ce2d382e136 *R/compBagplot.R
 11446ec301ede628f845e32036ac26ea *R/depthContour.R
-e0942dd414a76ade16bf96ba40c9ffe7 *R/dirOutl.R
+b46e24d8798aa5e0e8e9fa641a207b26 *R/dirOutl.R
 a8861bb2e780bbe55263485263144c39 *R/distSpace.R
 a9bd1f3b90e52a5dd2b425be5a9b6a7d *R/dprojdepth.R
 06d32cd3e3c6c8421fe1e705046537ca *R/dprojmedian.R
 b6fbdb1e761c031aec503d25b636b305 *R/fHeatMap.R
-2675f15c4eddb6e9622631604556a928 *R/fOutl.R
-0411793e5528d8fddbda5e296a195fde *R/fom.R
+ccb6abfd690919c44d63aaee0f3c44cb *R/fOutl.R
+a9c1bbcdd0340f5748c4fd21736cf1c8 *R/fom.R
 eb6c1670a2c3707b08f60109412d173f *R/hdepth.R
 bb062adbb069ce5870141300276a7a1d *R/hdepthmedian.R
 f70553422c88616691e7f0e68edcdb65 *R/medcouple.R
@@ -44,7 +44,7 @@ a49d3ae1509d58266d1ee7fbc2e775ee *data/glass.RData
 347b2e97c285ce0a8e71aaeccdb7721d *data/stars.RData
 18d37e842cdb87dece1ed48c7e6c392a *data/tablets.rdata
 f005619f018fbc42040d96f72f4ae424 *data/wine.rdata
-12896f91f297eec91e89fe18e06a362d *inst/NEWS.Rd
+b22b82525f666e4738dd7b2ff1c40286 *inst/NEWS.Rd
 2954f7b28a3da320170f94f4c55bdcef *man/adjOutl.Rd
 a83e1bb6a461004c8d9934c7bc6845a1 *man/bagdistance.Rd
 1c90146932431c4207a4e837211faf48 *man/bagplot.Rd
@@ -105,8 +105,9 @@ bd8463c96d4fdbbaed8ab9d01e7e8c5e *src/RegresDepth4D.f
 d9c842ad9eb29d7234d044a51547d1ec *src/RegresDepthDeepest.f
 014775685dd8998d68de6ecebde53bfe *src/RegresDepthNd.f
 e5c9d7052325cb7a6f17ffe9169897ac *src/auxyl.cpp
-b830f33bad05c203e916801de0d20d36 *src/dirOutl.cpp
-297fbb582f64d29d35d9ee81ff935497 *src/dirOutl.h
+25956e2008e1901ac91fe706c15794b3 *src/dirOutl.cpp
+3c84c9aad18634d9a20304a3bd0cee70 *src/dirOutl.h
+72b68b831a613d3f9206ebf6d05ca0f9 *src/dirOutl_aux.cpp
 d430a10f2c6ef40dce9148ad04383edb *src/hdepthND.cpp
 a619150cb9632c6b97a743e0f4b6ef94 *src/mc.cpp
 23144f819bfe1cb1d1e5c92d79296228 *src/medcouple.cpp
