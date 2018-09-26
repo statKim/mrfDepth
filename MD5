@@ -1,13 +1,13 @@
-5fa946b2d592fffd25f53a9de3a674ae *DESCRIPTION
+1d3f952b50fee0714e1d098574643127 *DESCRIPTION
 ed175966a8965997266a5a88d5d1b830 *NAMESPACE
 1585d71876f3a1d586c7f71c1cee1c3f *R/Misc.R
-628883b492aa21f9e712588a61436989 *R/adjOutl.R
+1d734d1bfd7a11292f37767249def4b7 *R/adjOutl.R
 064ec682d1227990c6b51cc87c7ea088 *R/bagdistance.R
 826a847dbcddf33c399e08a92f2d1860 *R/bagplot.R
 a36a49a52964ada2e1d001708e5a02d8 *R/cmltest.R
 9d62651cba7f373f171c6ce2d382e136 *R/compBagplot.R
 11446ec301ede628f845e32036ac26ea *R/depthContour.R
-b46e24d8798aa5e0e8e9fa641a207b26 *R/dirOutl.R
+df913f70b1ac83bf8897afd68311a14f *R/dirOutl.R
 a8861bb2e780bbe55263485263144c39 *R/distSpace.R
 a9bd1f3b90e52a5dd2b425be5a9b6a7d *R/dprojdepth.R
 06d32cd3e3c6c8421fe1e705046537ca *R/dprojmedian.R
@@ -20,7 +20,7 @@ f70553422c88616691e7f0e68edcdb65 *R/medcouple.R
 a61d82be08b97a02d41dc4d993e5cdf5 *R/mfd.R
 313907229d88c2e8ff7e8384f6c17fa3 *R/mfdmedian.R
 5fba873686926641d29967a5621e3cad *R/mrainbowplot.R
-4ca09f774dbfd8316209b5aa0f6ddcaa *R/outlyingness.R
+f01ea25ac6f75a751e3af144bc744d56 *R/outlyingness.R
 8b668483096b629138ad38fafb1e6070 *R/plotContours.R
 6d02651e140fa8024860e4a37eb71545 *R/projdepth.R
 c2d5756a11d3c91f2d57a93f220a302b *R/projmedian.R
@@ -44,8 +44,8 @@ a49d3ae1509d58266d1ee7fbc2e775ee *data/glass.RData
 347b2e97c285ce0a8e71aaeccdb7721d *data/stars.RData
 18d37e842cdb87dece1ed48c7e6c392a *data/tablets.rdata
 f005619f018fbc42040d96f72f4ae424 *data/wine.rdata
-b22b82525f666e4738dd7b2ff1c40286 *inst/NEWS.Rd
-2954f7b28a3da320170f94f4c55bdcef *man/adjOutl.Rd
+fff9f735480625bfe73bf363da9283b1 *inst/NEWS.Rd
+0d67363b4aba0fb6a25a35bd7d6a1270 *man/adjOutl.Rd
 a83e1bb6a461004c8d9934c7bc6845a1 *man/bagdistance.Rd
 1c90146932431c4207a4e837211faf48 *man/bagplot.Rd
 e9b938d34a7c8e594a90b89e0cf5012b *man/bloodfat.Rd
@@ -55,7 +55,7 @@ ef58fc01b3af2f5e54274342e2bfcfcf *man/cardata90.Rd
 d5fdfa40931058a3adeb89e760faeb1f *man/cmltest.Rd
 85ea3c547f7a75336473ff1a7aeef442 *man/compBagplot.Rd
 3d0e9b3c781a2a7367a96fb65f545f41 *man/depthContour.Rd
-55345b90a25dd29d9657de70617ba86f *man/dirOutl.Rd
+343159a96779c80b25fa2bb2ef4b887f *man/dirOutl.Rd
 20903f8870f896db8b196cf0e76e23e5 *man/distSpace.Rd
 31a22c08634948d56644cae0a0a779c5 *man/dprojdepth.Rd
 760ccd97fa62cfdd3d1b1eff0d7e16a0 *man/dprojmedian.Rd
@@ -72,7 +72,7 @@ d2a6858603dfa1353e4c7f63d3ad379d *man/mfd.Rd
 952de3bccaf49b0d7a042663c795170d *man/mrainbowplot.Rd
 36adf563bcdb69f1197926191d91c9d4 *man/mri.Rd
 eca694c0bf010faa29be2dbd9881e0e3 *man/octane.Rd
-515d595011f91ea6e63da1c8e45ca744 *man/outlyingness.Rd
+5e74b55ab643a2304a80e3180b3cf249 *man/outlyingness.Rd
 a2d9d18c34a3d6dd176cb2494825b44f *man/plane.Rd
 f48eaa22110a02499ce1065349c5fada *man/plotContours.Rd
 d87d173229d44866cdc6dc8629a52881 *man/projdepth.Rd
@@ -97,7 +97,7 @@ fc607976fb93d719f368a23fc74c4080 *src/HalfSpaceDepthDeepestLoc.f
 2280a178e36199589eccd31424d23d6b *src/HalfspaceDepth3D.f
 9f15802f842740f31f970e0fc2db1757 *src/LinAlg.f
 22560508d6fc28fff53c811abd196a9f *src/Makevars
-53dece5c8a0f227ba285fa9fb3d69b13 *src/Makevars.win
+4f49f14be495911715136fc56dab2718 *src/Makevars.win
 05d4eceafe7d76dfd508906af734d833 *src/Outlyingness.cpp
 5381c2de7891cf79ea5857edf2e531e1 *src/Random.f
 935bf812575cd7af660ab76d71bfd01b *src/RegresDepth3D.f

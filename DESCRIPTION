@@ -1,18 +1,18 @@
 Package: mrfDepth
 Type: Package
-Version: 1.0.8
-Date: 2018-07-08
+Version: 1.0.9
+Date: 2018-09-25
 Title: Depth Measures in Multivariate, Regression and Functional
         Settings
 Description: Tools to compute depth measures and implementations of related 
              tasks such as outlier detection, data exploration and 
             classification of multivariate, regression and functional data.
 Authors@R: c(
-            person(given="Pieter",family="Segaert", role = c("aut", "cre"), 
-                   email = "Pieter.Segaert@kuleuven.be"),
+            person(given="Pieter",family="Segaert", role = c("aut")),
             person(given="Mia",family="Hubert", role = c("aut")),
             person(given="Peter",family="Rousseeuw", role = c("aut")),
-            person(given="Jakob",family="Raymaekers", role = c("aut")),
+            person(given="Jakob",family="Raymaekers", role = c("aut", "cre"), 
+                   email = "jakob.raymaekers@kuleuven.be"),
             person(given="Kaveh",family="Vakili", role = c("ctb"))
              )
 Depends: R (>= 3.2.5), ggplot2
@@ -24,13 +24,14 @@ License: GPL (>= 2)
 LazyLoad: yes
 URL: https://github.com/PSegaert/mrfDepth
 BugReports: https://github.com/PSegaert/mrfDepth/issues
+RoxygenNote: 6.1.0
 NeedsCompilation: yes
-Packaged: 2018-07-07 09:08:31 UTC; Pieter Segaert
-Author: Pieter Segaert [aut, cre],
+Packaged: 2018-09-25 18:15:54 UTC; u0105404
+Author: Pieter Segaert [aut],
   Mia Hubert [aut],
   Peter Rousseeuw [aut],
-  Jakob Raymaekers [aut],
+  Jakob Raymaekers [aut, cre],
   Kaveh Vakili [ctb]
-Maintainer: Pieter Segaert <Pieter.Segaert@kuleuven.be>
+Maintainer: Jakob Raymaekers <jakob.raymaekers@kuleuven.be>
 Repository: CRAN
-Date/Publication: 2018-07-07 17:00:02 UTC
+Date/Publication: 2018-09-26 14:30:03 UTC
