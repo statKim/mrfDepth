@@ -100,6 +100,7 @@ Donoho D.L. (1982). Breakdown properties of multivariate location estimators. Ph
 
 Maronna R.A., Yohai V. (1995). The behavior of the Stahel-Donoho robust multivariate estimator. \emph{Journal of the American Statistical Association}, \bold{90}, 330--341.
 
+Rousseeuw, P.J., Raymaekers, J., Hubert, M., (2018), A Measure of Directional Outlyingness with Applications to Image Data and Video. \emph{Journal of Computational and Graphical Statistics}, \bold{27}, 345--359.
 }
 
 

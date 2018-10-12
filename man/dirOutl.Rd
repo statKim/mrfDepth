@@ -36,7 +36,7 @@ dirOutl(x, z = NULL, options = list())
 }
 
 \details{
-The directional outlyingness (DO) of multivariate data was introduced in Rousseeuw et al. (2016). It extends the Stahel-Donoho outlyingness towards skewed distributions.
+The directional outlyingness (DO) of multivariate data was introduced in Rousseeuw et al. (2018). It extends the Stahel-Donoho outlyingness towards skewed distributions.
 
 Depending on the dimension \eqn{p}, different approximate algorithms are implemented. The affine invariant algorithm can only be used when \eqn{n > p}. It draws \code{ndir} times at random \eqn{p} observations from \code{x} and considers the direction orthogonal to the hyperplane spanned by these \eqn{p} observations. At most \eqn{p} out of \eqn{n} directions can be considered. The orthogonal invariant version can be applied to high-dimensional data. It draws \code{ndir} times at random \eqn{2} observations from \code{x} and considers the direction through these two observations. Here, at most 2 out of \eqn{n} directions can be considered. Finally, the shift invariant version randomly draws \code{ndir} vectors from the unit sphere.
 
@@ -68,7 +68,6 @@ It is first checked whether the data lie in a subspace of dimension smaller than
 }
 \seealso{
   \code{\link{dprojdepth}}, \code{\link{dprojmedian}}, \code{\link{adjOutl}}, \code{\link{outlyingness}}
-
 
 }
 \references{

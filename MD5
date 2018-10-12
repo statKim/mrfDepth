@@ -1,4 +1,4 @@
-1d3f952b50fee0714e1d098574643127 *DESCRIPTION
+ea9e9f6da8a1012e090047d973621d75 *DESCRIPTION
 ed175966a8965997266a5a88d5d1b830 *NAMESPACE
 1585d71876f3a1d586c7f71c1cee1c3f *R/Misc.R
 1d734d1bfd7a11292f37767249def4b7 *R/adjOutl.R
@@ -8,7 +8,7 @@ a36a49a52964ada2e1d001708e5a02d8 *R/cmltest.R
 9d62651cba7f373f171c6ce2d382e136 *R/compBagplot.R
 11446ec301ede628f845e32036ac26ea *R/depthContour.R
 df913f70b1ac83bf8897afd68311a14f *R/dirOutl.R
-a8861bb2e780bbe55263485263144c39 *R/distSpace.R
+a542d985caa757efa4731f08b9a3ed6a *R/distSpace.R
 a9bd1f3b90e52a5dd2b425be5a9b6a7d *R/dprojdepth.R
 06d32cd3e3c6c8421fe1e705046537ca *R/dprojmedian.R
 b6fbdb1e761c031aec503d25b636b305 *R/fHeatMap.R
@@ -44,9 +44,9 @@ a49d3ae1509d58266d1ee7fbc2e775ee *data/glass.RData
 347b2e97c285ce0a8e71aaeccdb7721d *data/stars.RData
 18d37e842cdb87dece1ed48c7e6c392a *data/tablets.rdata
 f005619f018fbc42040d96f72f4ae424 *data/wine.rdata
-fff9f735480625bfe73bf363da9283b1 *inst/NEWS.Rd
+61b5818a0cdc890be2ac70d70682deac *inst/NEWS.Rd
 0d67363b4aba0fb6a25a35bd7d6a1270 *man/adjOutl.Rd
-a83e1bb6a461004c8d9934c7bc6845a1 *man/bagdistance.Rd
+ee14876551f3a46282ff2af83240cebb *man/bagdistance.Rd
 1c90146932431c4207a4e837211faf48 *man/bagplot.Rd
 e9b938d34a7c8e594a90b89e0cf5012b *man/bloodfat.Rd
 ef58fc01b3af2f5e54274342e2bfcfcf *man/cardata90.Rd
@@ -55,13 +55,13 @@ ef58fc01b3af2f5e54274342e2bfcfcf *man/cardata90.Rd
 d5fdfa40931058a3adeb89e760faeb1f *man/cmltest.Rd
 85ea3c547f7a75336473ff1a7aeef442 *man/compBagplot.Rd
 3d0e9b3c781a2a7367a96fb65f545f41 *man/depthContour.Rd
-343159a96779c80b25fa2bb2ef4b887f *man/dirOutl.Rd
+008013958e47104b54a033b7bc426ad3 *man/dirOutl.Rd
 20903f8870f896db8b196cf0e76e23e5 *man/distSpace.Rd
-31a22c08634948d56644cae0a0a779c5 *man/dprojdepth.Rd
-760ccd97fa62cfdd3d1b1eff0d7e16a0 *man/dprojmedian.Rd
+e6476615737f60075e3c3218be043279 *man/dprojdepth.Rd
+7d4d639ae416bc0a9a5fec6bc202f8b6 *man/dprojmedian.Rd
 d0162a5492fe4824c99be9cc782ebd92 *man/fHeatMap.Rd
-1e30ed80fee80bacc25d006b1f8e84fe *man/fOutl.Rd
-fb89fb62832a7093e6c23f4dbbd379e3 *man/fom.Rd
+0095a94bab3b6f841d68a33692e4ecbd *man/fOutl.Rd
+4abf006cca91350542eaecd81d307282 *man/fom.Rd
 ceaca2b0d291105e8a7f1e7f5997c46a *man/geological.Rd
 f21f7dad8f673efd715c45bc15e76caa *man/glass.Rd
 d085847eeb92455076434f412adcdd37 *man/hdepth.Rd
@@ -72,7 +72,7 @@ d2a6858603dfa1353e4c7f63d3ad379d *man/mfd.Rd
 952de3bccaf49b0d7a042663c795170d *man/mrainbowplot.Rd
 36adf563bcdb69f1197926191d91c9d4 *man/mri.Rd
 eca694c0bf010faa29be2dbd9881e0e3 *man/octane.Rd
-5e74b55ab643a2304a80e3180b3cf249 *man/outlyingness.Rd
+cb26b471f3312f7f052121c5ca1f75ea *man/outlyingness.Rd
 a2d9d18c34a3d6dd176cb2494825b44f *man/plane.Rd
 f48eaa22110a02499ce1065349c5fada *man/plotContours.Rd
 d87d173229d44866cdc6dc8629a52881 *man/projdepth.Rd
