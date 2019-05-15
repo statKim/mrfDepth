@@ -135,7 +135,7 @@ bagplot <- function(compbag.result,
   } else{
     label.title <- paste("Bagplot based on", compbag.result$type, "depth")
   }
-  plot <- plot + ggtitle(label.title)
+  plot <- plot + ggtitle(label.title) + theme(plot.title = element_text(hjust = 0.5))
 
   return(plot)
 

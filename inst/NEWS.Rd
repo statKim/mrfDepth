@@ -2,6 +2,12 @@
 \title{News for package "mrfDepth"}
 \encoding{UTF-8}
 
+\section{Changes in version 1.0.11 (2019-05-15)}{
+\itemize{
+    \item Compiler flags adjusted
+ }
+}
+
 \section{Changes in version 1.0.10 (2018-10-12)}{
 \itemize{
     \item Bugfixes in distSpace method

@@ -1,11 +1,11 @@
-ea9e9f6da8a1012e090047d973621d75 *DESCRIPTION
+a320ba9056a9c8f1118b3666b5b8db4c *DESCRIPTION
 ed175966a8965997266a5a88d5d1b830 *NAMESPACE
 1585d71876f3a1d586c7f71c1cee1c3f *R/Misc.R
 1d734d1bfd7a11292f37767249def4b7 *R/adjOutl.R
 064ec682d1227990c6b51cc87c7ea088 *R/bagdistance.R
-826a847dbcddf33c399e08a92f2d1860 *R/bagplot.R
+82515e885e499d19ad9870674ecf739f *R/bagplot.R
 a36a49a52964ada2e1d001708e5a02d8 *R/cmltest.R
-9d62651cba7f373f171c6ce2d382e136 *R/compBagplot.R
+1f98f7eb666f1ef9cc2ee2156125abcc *R/compBagplot.R
 11446ec301ede628f845e32036ac26ea *R/depthContour.R
 df913f70b1ac83bf8897afd68311a14f *R/dirOutl.R
 a542d985caa757efa4731f08b9a3ed6a *R/distSpace.R
@@ -44,7 +44,7 @@ a49d3ae1509d58266d1ee7fbc2e775ee *data/glass.RData
 347b2e97c285ce0a8e71aaeccdb7721d *data/stars.RData
 18d37e842cdb87dece1ed48c7e6c392a *data/tablets.rdata
 f005619f018fbc42040d96f72f4ae424 *data/wine.rdata
-61b5818a0cdc890be2ac70d70682deac *inst/NEWS.Rd
+c222ab57ed001fd3b29224a38fd83c67 *inst/NEWS.Rd
 0d67363b4aba0fb6a25a35bd7d6a1270 *man/adjOutl.Rd
 ee14876551f3a46282ff2af83240cebb *man/bagdistance.Rd
 1c90146932431c4207a4e837211faf48 *man/bagplot.Rd
@@ -96,8 +96,8 @@ fc607976fb93d719f368a23fc74c4080 *src/HalfSpaceDepthDeepestLoc.f
 719dacbf047f4fd8440f9fe774c9da1d *src/HalfSpaceDepthND.f
 2280a178e36199589eccd31424d23d6b *src/HalfspaceDepth3D.f
 9f15802f842740f31f970e0fc2db1757 *src/LinAlg.f
-22560508d6fc28fff53c811abd196a9f *src/Makevars
-4f49f14be495911715136fc56dab2718 *src/Makevars.win
+cfa0f2f4dc9e099159c0517b26306f03 *src/Makevars
+101ef1a401241eaffd3398befc909c04 *src/Makevars.win
 05d4eceafe7d76dfd508906af734d833 *src/Outlyingness.cpp
 5381c2de7891cf79ea5857edf2e531e1 *src/Random.f
 935bf812575cd7af660ab76d71bfd01b *src/RegresDepth3D.f

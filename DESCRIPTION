@@ -1,7 +1,7 @@
 Package: mrfDepth
 Type: Package
-Version: 1.0.10
-Date: 2018-10-12
+Version: 1.0.11
+Date: 2019-05-15
 Title: Depth Measures in Multivariate, Regression and Functional
         Settings
 Description: Tools to compute depth measures and implementations of related 
@@ -15,7 +15,7 @@ Authors@R: c(
                    email = "jakob.raymaekers@kuleuven.be"),
             person(given="Kaveh",family="Vakili", role = c("ctb"))
              )
-Depends: R (>= 3.2.5), ggplot2
+Depends: R (>= 3.6.0), ggplot2
 Imports: abind, geometry, grid, matrixStats, reshape2,
 Suggests: robustbase
 LinkingTo: RcppEigen (>= 0.3.2.9.0), Rcpp (>= 0.12.6), RcppArmadillo
@@ -26,7 +26,7 @@ URL: https://github.com/PSegaert/mrfDepth
 BugReports: https://github.com/PSegaert/mrfDepth/issues
 RoxygenNote: 6.1.0
 NeedsCompilation: yes
-Packaged: 2018-10-12 08:57:05 UTC; u0105404
+Packaged: 2019-05-15 07:09:36 UTC; u0105404
 Author: Pieter Segaert [aut],
   Mia Hubert [aut],
   Peter Rousseeuw [aut],
@@ -34,4 +34,4 @@ Author: Pieter Segaert [aut],
   Kaveh Vakili [ctb]
 Maintainer: Jakob Raymaekers <jakob.raymaekers@kuleuven.be>
 Repository: CRAN
-Date/Publication: 2018-10-12 09:40:02 UTC
+Date/Publication: 2019-05-15 10:00:03 UTC

@@ -195,15 +195,15 @@ CompHalfSpaceBagplot <- function(x, sizesubset) {
   colnames(Datatyp) <- c(colnames(x), "positionIndicator")
 
   # Calculate the fence.
-  Bag <- result[[9]][1:result[[10]], ]
+  Bag <- result[[9]][1:result[[10]], , drop = FALSE]
   Center <- result[[6]]
   centered.bag <- sweep(Bag, MARGIN = 2, Center, FUN = "-")
   fence <-  3 * centered.bag
   fence <- sweep(fence, MARGIN = 2, Center, FUN = "+")
 
   returned.result <- list(center = result[[6]],
-                chull = result[[8]][1:result[[7]], ],
-                bag = result[[9]][1:result[[10]], ],
+                chull = result[[8]][1:result[[7]], , drop = FALSE],
+                bag = result[[9]][1:result[[10]], , drop = FALSE],
                 fence = fence,
                 datatype = Datatyp,
                 flag = Flag,

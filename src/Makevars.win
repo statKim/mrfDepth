@@ -6,5 +6,5 @@ PKG_LIBS = $(SHLIB_OPENMP_CXXFLAGS) $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS)
 mrfDepth_FFLAGS = $(FPICFLAGS) $(SHLIB_FFLAGS)
 all: $(SHLIB)
 HalfSpaceDepthMedian.o: HalfSpaceDepthMedian.f
-	$(F77) $(mrfDepth_FFLAGS) -O1 -pipe -g -c -o HalfSpaceDepthMedian.o HalfSpaceDepthMedian.f
+	$(FC) $(mrfDepth_FFLAGS) -O1 -pipe -g -c -o HalfSpaceDepthMedian.o HalfSpaceDepthMedian.f
 	
