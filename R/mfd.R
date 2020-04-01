@@ -122,7 +122,7 @@ mfd <- function(x,
   depthsTimeX <- matrix(NA, nrow = n1, ncol = t1)
   depthsTimeZ <- matrix(0.0, nrow = n2, ncol = t2)
   locOutlX <- matrix(NA, nrow = n1, ncol = t1)
-  locOutlZ <- matrix(NA, nrow = n1, ncol = t1)
+  locOutlZ <- matrix(NA, nrow = n2, ncol = t2)
   if (is.matrix(alpha)) {
     weights <- alpha
   }

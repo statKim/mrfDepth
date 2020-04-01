@@ -1,4 +1,4 @@
-a320ba9056a9c8f1118b3666b5b8db4c *DESCRIPTION
+756a0f2e47b70902e329f772e1fc9e01 *DESCRIPTION
 ed175966a8965997266a5a88d5d1b830 *NAMESPACE
 1585d71876f3a1d586c7f71c1cee1c3f *R/Misc.R
 1d734d1bfd7a11292f37767249def4b7 *R/adjOutl.R
@@ -17,7 +17,7 @@ a9c1bbcdd0340f5748c4fd21736cf1c8 *R/fom.R
 eb6c1670a2c3707b08f60109412d173f *R/hdepth.R
 bb062adbb069ce5870141300276a7a1d *R/hdepthmedian.R
 f70553422c88616691e7f0e68edcdb65 *R/medcouple.R
-a61d82be08b97a02d41dc4d993e5cdf5 *R/mfd.R
+e23278443cb4fec10255d9f9969cfc42 *R/mfd.R
 313907229d88c2e8ff7e8384f6c17fa3 *R/mfdmedian.R
 5fba873686926641d29967a5621e3cad *R/mrainbowplot.R
 f01ea25ac6f75a751e3af144bc744d56 *R/outlyingness.R
@@ -106,7 +106,7 @@ d9c842ad9eb29d7234d044a51547d1ec *src/RegresDepthDeepest.f
 014775685dd8998d68de6ecebde53bfe *src/RegresDepthNd.f
 e5c9d7052325cb7a6f17ffe9169897ac *src/auxyl.cpp
 25956e2008e1901ac91fe706c15794b3 *src/dirOutl.cpp
-3c84c9aad18634d9a20304a3bd0cee70 *src/dirOutl.h
+f3b045e95b4ca872097458f69ce603de *src/dirOutl.h
 72b68b831a613d3f9206ebf6d05ca0f9 *src/dirOutl_aux.cpp
 d430a10f2c6ef40dce9148ad04383edb *src/hdepthND.cpp
 a619150cb9632c6b97a743e0f4b6ef94 *src/mc.cpp
