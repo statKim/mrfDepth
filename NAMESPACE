@@ -32,7 +32,7 @@ export(symtest)
 export(compBagplot)
 export(bagdistance)
 export(distSpace)
-
+#export(distSpaceknn)
 
 export(rdepth)
 #export(catline)

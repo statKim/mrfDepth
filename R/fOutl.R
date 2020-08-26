@@ -16,28 +16,46 @@ fOutl <- function(x,
   if (!is.array(x)) {
     stop("x must be a three dimensional array.")
   }
-  if (length(dim(x)) != 3) {
-    stop("x must be a three dimensional array.")
+  if ((length(dim(x)) != 3) && (length(dim(x)) != 4)) {
+    stop("x must be a three or four dimensional array.")
   }
+  if (length(dim(x)) == 4) { # t1 x t2 x n x p array --> unfold
+    imageData  <- TRUE
+    x_origDim  <- dim(x) 
+    dim(x)     <- c(prod(x_origDim[1:2]), x_origDim[3:4]) 
+  } else {
+    imageData <- FALSE
+  }
+  
   if (sum(is.nan(x)) != 0) {
     stop("x contains missing cases.")
   }
+  
   t1 <- dim(x)[1]
   n1 <- dim(x)[2]
   p1 <- dim(x)[3]
 
-  #Check z
+  # Check z
   if (is.null(z)) {
     z <- x
-  }
-  if (!is.array(z)) {
-    stop("z must be a three dimensional array.")
-  }
-  if (length(dim(z)) != 3) {
-    stop("z must be a three dimensional array.")
-  }
-  if (sum(is.nan(z)) != 0) {
-    stop("z contains missing cases.")
+  } else {
+    if (!is.array(z)) {
+      stop("z must be a three dimensional array.")
+    }
+    if ((length(dim(z)) != 3) && (!imageData)) {
+      stop("z must be a three dimensional array.")
+    }
+    if ((length(dim(z)) != 4) && (imageData)) {
+      stop("z must also be a four dimensional array.")
+    }
+    if (length(dim(z)) == 4) { # t1 x t2 x n x p array --> unfold
+      z_origDim  <- dim(z) 
+      dim(z)     <- c(prod(z_origDim[1:2]), z_origDim[3:4]) 
+    }
+    
+    if (sum(is.nan(z)) != 0) {
+      stop("z contains missing cases.")
+    }
   }
   t2 <- dim(z)[1]
   n2 <- dim(z)[2]
@@ -213,7 +231,7 @@ fOutl <- function(x,
   fOutlX <- distTimeX %*% weights
   fOutlZ <- distTimeZ %*% weights
 
-  #Assemble the results
+  # Assemble the results
   Result <- list(fOutlyingnessX = fOutlX,
                  fOutlyingnessZ = fOutlZ,
                  weights = weights)
@@ -222,6 +240,12 @@ fOutl <- function(x,
     Result$crossDistsZ <- distTimeZ
     Result$locOutlX <- locOutlX
     Result$locOutlZ <- locOutlZ
+    if (imageData) {
+      dim(Result$crossDistsX) <- c(n1, x_origDim[1:2])
+      dim(Result$crossDistsZ) <- c(n2, x_origDim[1:2])
+      dim(Result$locOutlX)    <- c(n1, x_origDim[1:2])
+      dim(Result$locOutlZ)    <- c(n2, x_origDim[1:2])
+    }
   }
   Result$distType <- type
   class(Result) <- c("mrfDepth", "fOutl")

@@ -1,5 +1,5 @@
-756a0f2e47b70902e329f772e1fc9e01 *DESCRIPTION
-ed175966a8965997266a5a88d5d1b830 *NAMESPACE
+70959477c9fb03f32768361bf4dc5adf *DESCRIPTION
+3d5bf57e2e01de01babad22b06118502 *NAMESPACE
 1585d71876f3a1d586c7f71c1cee1c3f *R/Misc.R
 1d734d1bfd7a11292f37767249def4b7 *R/adjOutl.R
 064ec682d1227990c6b51cc87c7ea088 *R/bagdistance.R
@@ -12,7 +12,7 @@ a542d985caa757efa4731f08b9a3ed6a *R/distSpace.R
 a9bd1f3b90e52a5dd2b425be5a9b6a7d *R/dprojdepth.R
 06d32cd3e3c6c8421fe1e705046537ca *R/dprojmedian.R
 b6fbdb1e761c031aec503d25b636b305 *R/fHeatMap.R
-ccb6abfd690919c44d63aaee0f3c44cb *R/fOutl.R
+8f698c2a124110f2b6da39cf5403b5ed *R/fOutl.R
 a9c1bbcdd0340f5748c4fd21736cf1c8 *R/fom.R
 eb6c1670a2c3707b08f60109412d173f *R/hdepth.R
 bb062adbb069ce5870141300276a7a1d *R/hdepthmedian.R
@@ -96,8 +96,8 @@ fc607976fb93d719f368a23fc74c4080 *src/HalfSpaceDepthDeepestLoc.f
 719dacbf047f4fd8440f9fe774c9da1d *src/HalfSpaceDepthND.f
 2280a178e36199589eccd31424d23d6b *src/HalfspaceDepth3D.f
 9f15802f842740f31f970e0fc2db1757 *src/LinAlg.f
-cfa0f2f4dc9e099159c0517b26306f03 *src/Makevars
-101ef1a401241eaffd3398befc909c04 *src/Makevars.win
+ab33277abcab1758d2a64ab7c32b9ec5 *src/Makevars
+25632513b11be194cfc2fbdcebd8dd25 *src/Makevars.win
 05d4eceafe7d76dfd508906af734d833 *src/Outlyingness.cpp
 5381c2de7891cf79ea5857edf2e531e1 *src/Random.f
 935bf812575cd7af660ab76d71bfd01b *src/RegresDepth3D.f
