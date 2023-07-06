@@ -362,7 +362,7 @@ C
       IF (M.LT.J) THEN
           K=0
       ELSE
-          MM=int8(M)
+          MM=INT(M,KIND=8)
           IF (J.EQ.1) K=MM
           IF (J.EQ.2) K=(MM*(MM-1))/2
           IF (J.EQ.3) K=(MM*(MM-1)*(MM-2))/6

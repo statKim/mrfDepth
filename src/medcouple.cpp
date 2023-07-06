@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <sstream>
 #include <vector>
+#define EIGEN_PERMANENTLY_DISABLE_STUPID_WARNINGS
 #include <Eigen/Dense>
 
 using namespace std;

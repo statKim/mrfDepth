@@ -12,6 +12,7 @@
 #include <vector>
 #include <limits>
 
+#define EIGEN_PERMANENTLY_DISABLE_STUPID_WARNINGS
 #include <Eigen/Dense>
 #include <Eigen/QR>
 

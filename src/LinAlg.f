@@ -60,7 +60,8 @@ C     -----------------------------
       V(L,L) = -1.
       S = 1./S
       DO 40 I = 1,N
-40         V(I,L) = -S*V(I,L)
+         V(I,L) = -S*V(I,L)
+40    CONTINUE
       J = L
 50    J = J + 1
       IF ( J .GT. N ) J = 1
@@ -74,11 +75,13 @@ C     |*** ELIMINATE BY COLUMNS ***|
 C     ------------------------------
       IF ( K .EQ. 0 ) GOTO 70
       DO 60 I = 1,K
-60         V(I,J) = V(I,J) + T*V(I,L)
+         V(I,J) = V(I,J) + T*V(I,L)
+60    CONTINUE
 70    V(L,J) = S*T
       IF ( M .GT. N ) GOTO 50
       DO 80 I = M,N
-80         V(I,J) = V(I,J) + T*V(I,L)
+         V(I,J) = V(I,J) + T*V(I,L)
+80    CONTINUE
       GOTO 50
 C     -----------------------
 C     |*** PIVOT COLUMNS ***|
@@ -87,7 +90,8 @@ C     -----------------------
       DO 100 I = 1,N
            T = V(I,L)
            V(I,L) = V(I,K)
-100        V(I,K) = T
+           V(I,K) = T
+100   CONTINUE
       K = K - 1
       IF ( K .GT. 0 ) GOTO 90
       RETURN
@@ -243,7 +247,8 @@ c
       if (n .eq. 1) go to 1001
 c
       do 100 i = 2, n
-  100 e(i-1) = e(i)
+      e(i-1) = e(i)
+  100 continue
 c
       f = 0.0d0
       tst1 = 0.0d0
@@ -277,7 +282,8 @@ c     .......... form shift ..........
          if (l2 .gt. n) go to 145
 c
          do 140 i = l2, n
-  140    d(i) = d(i) - h
+         d(i) = d(i) - h
+  140    continue
 c
   145    f = f + h
 c     .......... ql transformation ..........
@@ -394,7 +400,8 @@ c
       do 100 i = 1, n
 c
          do 80 j = i, n
-   80    z(j,i) = a(j,i)
+         z(j,i) = a(j,i)
+   80    continue
 c
          d(i) = a(n,i)
   100 continue
@@ -409,7 +416,8 @@ c     .......... for i=n step -1 until 2 do -- ..........
          if (l .lt. 2) go to 130
 c     .......... scale row (algol tol then not needed) ..........
          do 120 k = 1, l
-  120    scale = scale + dabs(d(k))
+         scale = scale + dabs(d(k))
+  120    continue
 c
          if (scale .ne. 0.0d0) go to 140
   130    e(i) = d(l)
@@ -434,7 +442,8 @@ c
          d(l) = f - g
 c     .......... form a*u ..........
          do 170 j = 1, l
-  170    e(j) = 0.0d0
+         e(j) = 0.0d0
+  170    continue
 c
          do 240 j = 1, l
             f = d(j)
@@ -461,14 +470,16 @@ c
          hh = f / (h + h)
 c     .......... form q ..........
          do 250 j = 1, l
-  250    e(j) = e(j) - hh * d(j)
+         e(j) = e(j) - hh * d(j)
+  250    continue
 c     .......... form reduced a ..........
          do 280 j = 1, l
             f = d(j)
             g = e(j)
 c
             do 260 k = j, l
-  260       z(k,j) = z(k,j) - f * e(k) - g * d(k)
+            z(k,j) = z(k,j) - f * e(k) - g * d(k)
+  260       continue
 c
             d(j) = z(l,j)
             z(i,j) = 0.0d0
@@ -485,20 +496,23 @@ c     .......... accumulation of transformation matrices ..........
          if (h .eq. 0.0d0) go to 380
 c
          do 330 k = 1, l
-  330    d(k) = z(k,i) / h
+         d(k) = z(k,i) / h
+  330    continue
 c
          do 360 j = 1, l
             g = 0.0d0
 c
             do 340 k = 1, l
-  340       g = g + z(k,i) * z(k,j)
+            g = g + z(k,i) * z(k,j)
+  340       continue
 c
             do 360 k = 1, l
                z(k,j) = z(k,j) - g * d(k)
   360    continue
 c
   380    do 400 k = 1, l
-  400    z(k,i) = 0.0d0
+         z(k,i) = 0.0d0
+  400    continue
 c
   500 continue
 c
@@ -581,13 +595,14 @@ CC    ------------------------------------------------------------------
       LCLPL=LCLPL+JDM+1
       JDEL=LCLPL+N-JHFD
       DO 40 JNCB=LCLPL,JDEL
-      IF(DABS(HVEC(JNCB))-DABS(TURN)) 40,40,30
- 30   TURN=HVEC(JNCB)
+      IF(DABS(HVEC(JNCB))-DABS(TURN) > 0) THEN
+      TURN=HVEC(JNCB)
       LDEL=JNCB
+      END IF
  40   CONTINUE
       IF(DABS(TURN).LE.1D-8) GOTO 170
- 50   IF(LDEL-LCLPL) 60,80,60
- 60   DETER=-DETER
+ 50   IF((LDEL-LCLPL)/=0) THEN
+      DETER=-DETER
       LDEL=LDEL-JDM
       JNCB=LCLPL-JDM
       DO 70 JNCC=JHFD,JMAT
@@ -595,13 +610,16 @@ CC    ------------------------------------------------------------------
       JNCB=JNCB+JDM
       SWAP=HVEC(JNCB)
       HVEC(JNCB)=HVEC(LDEL)
- 70   HVEC(LDEL)=SWAP
- 80   DETER=DETER*TURN
+      HVEC(LDEL)=SWAP
+ 70   CONTINUE
+      DETER=DETER*TURN
+      ENDIF
       IF (JHFD.EQ.N)  GOTO 120
       TURN=1./TURN
       JNCB=LCLPL+1
       DO 90 JNCC=JNCB,JDEL
- 90   HVEC(JNCC)=HVEC(JNCC)*TURN
+      HVEC(JNCC)=HVEC(JNCC)*TURN
+ 90   CONTINUE
       JNCD=LCLPL
       JROW=JHFD+1
       DO 110 JNCB=JROW,N
@@ -611,7 +629,8 @@ CC    ------------------------------------------------------------------
       DO 100 JNCC=JROW,JMAT
       JNCE=JNCE+JDM
       JNCF=JNCF+JDM
- 100  HVEC(JNCF)=HVEC(JNCF)-HVEC(JNCE)*HVEC(JNCD)
+      HVEC(JNCF)=HVEC(JNCF)-HVEC(JNCE)*HVEC(JNCD)
+ 100  CONTINUE
  110  CONTINUE
  120  CONTINUE
       NERR=0
@@ -631,7 +650,8 @@ CC    ------------------------------------------------------------------
       JNCD=JBEGX-1
       DO 130 JNCC=JBEGC,JENDC
       JNCD=JNCD+1
- 130  HVEC(JNCD)=HVEC(JNCD)-HVEC(JNCC)*SWAP
+      HVEC(JNCD)=HVEC(JNCD)-HVEC(JNCC)*SWAP
+ 130  CONTINUE
  140  CONTINUE
       HVEC(JBEGX)=HVEC(JBEGX)/HVEC(1)
  150  CONTINUE
@@ -645,7 +665,8 @@ CC    ------------------------------------------------------------------
       JNCD=JNC
       DO 160 JNCC=JBEGX,JENDX
       JNCD=JNCD+1
- 160  HVEC(JNCD)=HVEC(JNCC)
+      HVEC(JNCD)=HVEC(JNCC)
+ 160  CONTINUE
       GOTO 180
  170  NERR=-1
  180  JNK=0

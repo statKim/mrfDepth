@@ -1,16 +1,11 @@
 #ifndef dirOutl_H
 #define dirOutl_H
 
-
-#define ARMA_DONT_PRINT_ERRORS
+#define ARMA_WARN_LEVEL 0
 #include "RcppArmadillo.h"
 
 RcppExport SEXP dirOutl_cpp(SEXP DATAX, SEXP DATAZ, SEXP TYPE,SEXP NDIR, SEXP RMZEROES, SEXP MAXRATIO,SEXP PRECSCALE);
 
-
-#ifndef  ARMA_USE_CXX11
-#define ARMA_USE_CXX11
-#endif 
 
 using namespace arma;
 

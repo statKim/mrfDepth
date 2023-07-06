@@ -3,7 +3,7 @@ importFrom("stats",
            "rnorm", "qnorm")
 importFrom("grDevices",
            "chull", "extendrange", "rgb")
-
+importFrom("Rcpp", "evalCpp")
 importFrom("abind", abind)
 importFrom("geometry", convhulln)
 importFrom("grid", grid.newpage, grid.layout, viewport, pushViewport)
