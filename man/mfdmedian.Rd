@@ -1,16 +1,15 @@
 \name{mfdmedian}
 \alias{mfdmedian}
-\title{Multivariate functional median for functional data.}
+\title{Multivariate functional median for functional data}
 \description{
-Computes the multivariate functional median, an estimate for the central tedency
-for multivariate functional data.
+Computes the multivariate functional median, an estimate for the central tendency of multivariate functional data.
 }
 \usage{
-  mfdmedian(x, type="hdepth", crossDepthsX = NULL,
+  mfdmedian(x, type = "hdepth", crossDepthsX = NULL,
             depthOptions = NULL, centerOption = "maxdepth")
 }
 \arguments{
-       \item{x}{A three dimensional \eqn{t} by \eqn{n} by \eqn{p} array,
+       \item{x}{A three-dimensional \eqn{t} by \eqn{n} by \eqn{p} array,
                 with \eqn{t} the number of observed time points,
                 \eqn{n} the number of functional observations
                 and \eqn{p} the number of measurements
@@ -19,22 +18,21 @@ for multivariate functional data.
                 One of the following options: \code{"hdepth"},
                 \code{"projdepth"}, \code{"sprojdepth"}, \code{"dprojdepth"},
                 \code{"sdepth"}. \cr  Defaults to \code{"hdepth"}.}
-\item{crossDepthsX}{Depths at each time point. Can be used to save time}
+\item{crossDepthsX}{Depth values at each time point. Can be used to save computing time.}
 \item{depthOptions}{A list of options to pass to the function
-                    calculating the cross-sectional depths. \cr
-                    See \code{hdepth}, \code{projdepth}, \code{sprojdepth},
-                    \code{dprojdepth} or \code{sdepth}.}
-\item{centerOption}{By default the 'maxdepth' center estimate is used for the
-                     projmedian and the sprojmedian. This can be changed by setting
-                     centerOption to 'gravity' or 'Huber' depending on wheter
-                     projmedian or sprojmedian is used.}
+                    that computes the cross-sectional depths.} 
+\item{centerOption}{When equal to \code{"maxdepth"} the functional median equals 
+                    at each time point the point with cross-sectional maximal depth. 
+                    When \code{type} is equal to \code{"projdepth"}, also a weighted center 
+                    of gravity can be computed based on Huber weights (see                                               \code{\link{projmedian}}). Then \code{centerOption} should be set to                                 \code{"Huber"}. Defaults to \code{"maxdepth"}.}
 }
 \details{
-The multivariate functional median a multivariate functional data set is defined
+The multivariate functional median of a multivariate functional data set is defined
 as the multivariate curve connecting the cross-sectional multivariate depth 
 medians (Claeskens et al., 2014). 
 The MFD median can be computed in all dimensions \eqn{p} using halfspace depth, 
-projection depth and skewness-adjusted projection depth. 
+projection depth, skewness-adjusted projection depth or directional projection depth. 
+The simplicial depth can only be used for \eqn{p \le 2}.
 
 It is possible that at certain time points a part of the algorithm can not be 
 executed due to e.g. exact fits. In that case the estimate for the center will 
@@ -42,63 +40,69 @@ be set to NaN. A warning is issued at the end of the algorithm to signal
 these time points. Furthermore the output contains an extra argument giving the 
 indices of the time points where problems occured.
 }
+
 \value{
  A  list with the following
   component:
-       \item{MFDmedian}{An \code{(txp)} matrix containing the estimated central curve.}
+       \item{MFDmedian}{An \eqn{t} by \eqn{p} matrix containing the estimated central curve.}
        \item{IndFlagExactFit}{Vector containing the indices of the
                               time points for which an exact fit is
                               detected.}
 }
 \references{
 Claeskens G., Hubert M., Slaets L., Vakili K. (2014). Multivariate functional halfspace depth.
-\emph{Journal of the American Statistical Association,} \bold{109}, 505, 411--423.
+\emph{Journal of the American Statistical Association,} \bold{109}, 411--423.
+}
+\seealso{
+\code{\link{hdepth}}, \code{\link{projdepth}}, 
+\code{\link{sprojdepth}}, \code{\link{dprojdepth}}, \code{\link{sdepth}},
+\code{\link{mfd}}
 }
 \examples{
-# We will illustrate the function using a bivariate functional sample.
+# Consider a bivariate functional sample.
 data(characterA)
-Data <- characterA[,1:50,]
+Data <- characterA[, 1:50, ]
 Result <- mfdmedian(Data)
 
+# Plot the data and the functional median
 par(mfrow = c(1,2))
-matplot(Data[,,1], type = "l", col = "black", lty = 1, ylab = "x-coordinate")
-matlines(Result$MFDmedian[,1], type = "l", col = "red", lty = 1)
-matpoints(Result$MFDmedian[,1], col = "red", pch = 15)
-matplot(Data[,,2], type = "l", col = "black", lty = 1, ylab = "y-coordinate")
-matlines(Result$MFDmedian[,2], type = "l", col = "red", lty = 1)
-matpoints(Result$MFDmedian[,2], col = "red", pch = 15)
+matplot(Data[, , 1], type = "l", col = "black", lty = 1, ylab = "x-coordinate")
+matlines(Result$MFDmedian[, 1], type = "l", col = "red", lwd = 2)
+matplot(Data[, , 2], type = "l", col = "black", lty = 1, ylab = "y-coordinate")
+matlines(Result$MFDmedian[, 2], type = "l", col = "red", lwd = 2)
 par(mfrow = c(1,1))
 
-# Other depth function such as adjusted outlyingness may also 
-# used to determine the cross-sectional depth median. 
-# In this case the depth median is calculated by the 
+# Other depth functions such as the adjusted outlyingness may also 
+# be used to determine the cross-sectional depth median. 
+# In this case the depth median is computed by the 
 # sprojmedian routine. 
-# When different depth median are available, a specific depth
-# median can be selected usinf the centerOption. Optional 
-# arguments used by the sprojmedian routine may be specified
+# Optional arguments used by the sprojmedian routine may be specified
 # using the depthOptions. For example one might choose the
-# "Rotation" equivariance for 300 directions. 
+# "Rotation" option with 300 directions. 
 Result <- mfdmedian(Data, type = "sprojdepth",
                     depthOptions = list(type = "Rotation",
-                                        ndir = 300),
-                    centerOption = "gravity")
+                                        ndir = 300))
 par(mfrow = c(1,2))
-matplot(Data[,,1], type = "l", col = "black", lty = 1, ylab = "x-coordinate")
-matlines(Result$MFDmedian[,1], type = "l", col = "red", lty = 1)
-matpoints(Result$MFDmedian[,1], col = "red", pch = 15)
-matplot(Data[,,2], type = "l", col = "black", lty = 1, ylab = "y-coordinate")
-matlines(Result$MFDmedian[,2], type = "l", col = "red", lty = 1)
-matpoints(Result$MFDmedian[,2], col = "red", pch = 15)
+matplot(Data[, , 1], type = "l", col = "black", lty = 1, ylab = "x-coordinate")
+matlines(Result$MFDmedian[, 1], type = "l", col = "red", lwd = 2)
+matplot(Data[, , 2], type = "l", col = "black", lty = 1, ylab = "y-coordinate")
+matlines(Result$MFDmedian[, 2], type = "l", col = "red", lwd = 2)
 par(mfrow = c(1,1))
 
-# If the user already placed a call to the mdf routine
+# If the user already placed a call to the mfd routine
 # with the diagnostic options set to TRUE, the 
 # mfdmedian can easily be obtained by passing the cross-sectional 
-# depths. This drastically saves computing time.  
+# depths. This considerably saves computing time.  
 tResult <- mfd(x = Data, type = "sprojdepth", diagnostic = TRUE)
 Result <- mfdmedian(Data, type = "sprojdepth",
                     crossDepthsX = tResult$crossdepthX,
-                    centerOption = "gravity")
+                    )
+  
+# Univariate curves should also be represented as arrays
+Data.x <- Data[, , 1, drop = FALSE]
+Result <- mfdmedian(Data.x)
+matplot(Data.x[ , , 1], type = "l", col = "black", lty = 1, ylab = "x-coordinate")
+matlines(Result$MFDmedian[, 1], type = "l", col = "red", lwd = 2)
 }
-\author{P. Segaert}
+\author{P. Segaert, M. Hubert}
 \keyword{functional}

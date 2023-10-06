@@ -42,10 +42,10 @@ sprojdepth(x, z = NULL, options = NULL)
   A list with components: \cr
       \item{depthX}{Vector of length \eqn{n} giving the
                     skewness-adjusted projection depth of
-                    the observations in x.}
+                    the observations in \code{x}.}
       \item{depthZ}{Vector of length \eqn{m} giving the
                     skewness-adjusted projection depth of
-                    the points in z.}
+                    the points in \code{z}.}
       \item{cutoff}{Points whose skew-adjusted projection depth is smaller
                 than this cutoff can be considered as outliers.}
       \item{flagX}{Observations of \code{x} whose adjusted outlyingness exceeds 
@@ -82,19 +82,15 @@ sprojdepth(x, z = NULL, options = NULL)
 \references{
  Hubert M., Van der Veeken S. (2008). Outlier detection for skewed data. \emph{Journal of Chemometrics}, \bold{22}, 235--246.
  
- Hubert M, Rousseeuw P.J., Segaert P. (2015). Multivariate Functional Outlier Detection. \emph{Statistical Methods & Applications}, \bold{24}, 177--202.
+ Hubert M, Rousseeuw P.J., Segaert P. (2015). Multivariate functional outlier detection. \emph{Statistical Methods & Applications}, \bold{24}, 177--202.
 }
 \author{P. Segaert with original code from M. Maechler, G. Brys, K. Vakili}
 \examples{
 # Compute the skewness-adjusted projection depth 
-# of a simple two-dimensional dataset.
-# Outliers are plotted in red.
+# of a two-dimensional dataset.
 
 data(bloodfat)
 Result <- sprojdepth(x = bloodfat)
-IndOutliers <- which(!Result$flagX)
-plot(bloodfat)
-points(bloodfat[IndOutliers,], col = "red")
 
 # A multivariate rainbowplot may be obtained using mrainbowplot.
 plot.options = list(legend.title = "SPD")

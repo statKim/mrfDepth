@@ -1,5 +1,6 @@
 compBagplot <- function(x, type="hdepth", sizesubset=500,
-                        extra.directions = FALSE, options=NULL){
+                        extra.directions = FALSE,
+                        options=NULL){
 
   ######
   # Check input.
@@ -28,10 +29,10 @@ compBagplot <- function(x, type="hdepth", sizesubset=500,
   }
 
   # Check type
-  Indtype <- match(type, c("hdepth", "projdepth", "sprojdepth"))[1]
+  Indtype <- match(type, c("hdepth", "projdepth", "sprojdepth", "dprojdepth"))[1]
   if (is.na(Indtype)) {
     stop("The input parameter type should be one of hdepth,
-         projdepth or sprojdepth.")
+         projdepth, sprojdepth or dprojdepth.")
   }
 
   # Check sizesubset
@@ -127,7 +128,7 @@ compBagplot <- function(x, type="hdepth", sizesubset=500,
   if (type == "hdepth") {
     result <- CompHalfSpaceBagplot(x, sizesubset)
   }
-  else if (type == "projdepth" || type == "sprojdepth") {
+  else if (type == "projdepth" || type == "sprojdepth"|| type == "dprojdepth") {
     result <- CompProjectionTypeBagplot(x, type, extra.directions, options)
   }
   else{
@@ -221,12 +222,13 @@ CompProjectionTypeBagplot <- function(x, type, extra.directions, options){
   if (type == "projdepth") {
     Result <- projdepth(x = x, z = x, options = options)
     Center <- projmedian(x = x, projection.depths = Result[["depthZ"]])$max
-  }
-  else if (type == "sprojdepth") {
+  } else if (type == "sprojdepth") {
     Result <- sprojdepth(x = x, z = x, options = options)
     Center <- sprojmedian(x = x, sprojection.depths = Result[["depthZ"]])$max
-  }
-  else{
+  } else if (type == "dprojdepth") {
+    Result <- dprojdepth(x = x, z = x, options = options)
+    Center <- dprojmedian(x = x, dprojection.depths = Result[["depthZ"]])$max
+  } else{
     stop("The input parameter type is not recognized.")
   }
 

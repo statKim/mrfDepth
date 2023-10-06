@@ -12,7 +12,7 @@ mfd <- function(x,
     stop("Input argument x is required.")
   }
 
-  #Check x
+  # Check x
   if (!is.array(x)) {
     stop("x must be a three dimensional array.")
   }
@@ -26,7 +26,7 @@ mfd <- function(x,
   n1 <- dim(x)[2]
   p1 <- dim(x)[3]
 
-  #Check z
+  # Check z
   if (is.null(z)) {
     z <- x
   }
@@ -43,7 +43,7 @@ mfd <- function(x,
   n2 <- dim(z)[2]
   p2 <- dim(z)[3]
 
-  #Check dimension match between x and z
+  # Check dimension match between x and z
   if (p1 != p2) {
     stop("The p dimension of x and z must match.")
   }
@@ -51,7 +51,7 @@ mfd <- function(x,
     stop("The t dimension of x and z must match.")
   }
 
-  #Check type
+  # Check type
   Indtype <- match(type, c("hdepth", "projdepth",
                            "sprojdepth", "dprojdepth", "sdepth"))[1]
   if (is.na(Indtype)) {
@@ -61,16 +61,16 @@ mfd <- function(x,
     stop("sdepth depth only implemented for p<=2.")
   }
 
-  #Check alpha
+  # Check alpha
   if (!is.numeric(alpha)) {
     stop("alpha must be numeric")
   }
   if (is.vector(alpha)) {
     if (alpha < 0) {
-      stop("alpha should be part of [0,1]")
+      stop("alpha should be part of [0,1].")
     }
     if (alpha > 1) {
-      stop("alpha should be part of [0,1]")
+      stop("alpha should be part of [0,1].")
   }
   }
   else if (is.matrix(alpha)) {
@@ -84,7 +84,7 @@ mfd <- function(x,
     stop("alpha must be either a number or a (1xt)-row matrix.")
   }
 
-  #Check time
+  # Check time
   if (is.null(time)) {
     time <- 1:t1
   }
@@ -92,7 +92,7 @@ mfd <- function(x,
     stop("time should be a numeric vector.")
   }
   if (length(time) != t1) {
-    stop("time should contain t elements")
+    stop("time should contain t elements.")
   }
   if (length(time) != 1) {
     dTime <- diff(c(time[1], time, time[t1]), lag = 2)
@@ -100,21 +100,21 @@ mfd <- function(x,
       stop("time should be strictly increasing.")
     }
   }
-  else{
+  else {
     dTime <- 1
   }
 
-  #check diagnostic
+  # check diagnostic
   if (!is.logical(diagnostic)) {
-    stop("diagnostic should be a logical")
+    stop("diagnostic should be a logical.")
   }
 
-  #check depthOptions
+  # check depthOptions
   if (is.null(depthOptions)) {
     depthOptions <- list()
   }
   if (!is.list(depthOptions)) {
-    stop("depthOptions must be a list")
+    stop("depthOptions must be a list.")
   }
 
 
@@ -134,17 +134,17 @@ mfd <- function(x,
   for (j in 1:t1) {
     exactfit <- 0
 
-    #R has standard dimension dropping, we need to be carefull
+    # R has standard dimension dropping, we need to be careful
     if (p1 == 1)  {
       xTimePoint <- matrix(x[j,,1])
       zTimePoint <- matrix(z[j,,1])
     }
-    else{
+    else {
       xTimePoint <- x[j,,,drop = TRUE]
       zTimePoint <- z[j,,,drop = TRUE]
     }
 
-    #Find cross-sectional depth
+    # Find cross-sectional depth
     if (type == "hdepth") {
       temp <- hdepth(x = xTimePoint, z = zTimePoint, options  =  depthOptions)
       if (!is.list(temp)) {
@@ -154,17 +154,17 @@ mfd <- function(x,
         depthsTimeX[,j] <- temp$depthX
         depthsTimeZ[,j] <- temp$depthZ
       }
-      else{
+      else {
         exactfit <- 1
       }
 
-      #If requested find local halfspace outliers
+      # If requested find local halfspace outliers
       if (diagnostic & p1 == 2 & exactfit == FALSE) {
           temp <- compBagplot(x = xTimePoint, type = type)
           if (sum(is.nan(temp$flag)) == 0) {
             locOutlX[,j] <- temp$flag
           }
-          else{
+          else {
             warningFlagBag <- 1
             warningIndBag <- c(warningIndBag, j)
           }
@@ -179,7 +179,7 @@ mfd <- function(x,
         locOutlX[,j] <- as.numeric(!temp$flagX)
         locOutlZ[,j] <- as.numeric(!temp$flagZ)
       }
-      else{
+      else {
         exactfit <- 1
       }
     }
@@ -191,7 +191,7 @@ mfd <- function(x,
         locOutlX[,j] <- as.numeric(!temp$flagX)
         locOutlZ[,j] <- as.numeric(!temp$flagZ)
       }
-      else{
+      else {
         exactfit <- 1
       }
     }
@@ -203,31 +203,31 @@ mfd <- function(x,
         locOutlX[,j] <- as.numeric(!temp$flagX)
         locOutlZ[,j] <- as.numeric(!temp$flagZ)
       }
-      else{
+      else {
         exactfit <- 1
       }
     }
-    else{
+    else {
       temp <- sdepth(x = xTimePoint, z = zTimePoint)
       if (!is.null(temp$depth)) {
         depthsTimeZ[,j] <- temp$depth
       }
-      else{
+      else {
         exactfit <- 1
       }
     }
 
-    #Check if exact fit needs handling later on
+    # Check if exact fit needs handling later on
     if (exactfit) {
       weights[j] <- 0
       warningFlagFit <- 1
       warningIndFit <- c(warningIndFit, j)
     }
 
-    #Calculate the area of depth region at time T
-    #Do not calculate when alpha is row-matrix
+    # Calculate the area of depth region at time T
+    # Do not calculate when alpha is row-matrix
     if (!is.matrix(alpha)) {
-      #Only for non-constant weights, no point in calculating for exact fits
+      # Only for non-constant weights, no point in calculating for exact fits
       if (alpha != 0 && exactfit == 0) {
         temp <- depthContour(x = xTimePoint, alpha, type = type)
         Vert <- temp[[1]]$vertices
@@ -236,7 +236,7 @@ mfd <- function(x,
             warningFlagIso <- 1
             warningIndIso <- c(warningIndIso, j)
           }
-          else{
+          else {
             if (p1 == 1) {
               temp <- max(Vert) - min(Vert)
             } else {
@@ -247,12 +247,12 @@ mfd <- function(x,
               warningFlagAlpha <- 1
               warningIndAlpha <- c(warningIndAlpha, j)
             }
-            else{
+            else {
               weights[j] <- temp
             }
           }
         }
-        else{
+        else {
           weights[j] <- 0
           warningFlagIso <- 1
           warningIndIso <- c(warningIndIso, j)
@@ -268,7 +268,7 @@ mfd <- function(x,
   depthsX <- depthsTimeX %*% weights
   depthsZ <- depthsTimeZ %*% weights
 
-  #Assemble the results
+  # Assemble the results
   Result <- list(MFDdepthX = depthsX,
                  MFDdepthZ = depthsZ,
                  weights = weights)
@@ -281,32 +281,32 @@ mfd <- function(x,
   Result$depthType <- type
   class(Result) <- c("mrfDepth", "mfd")
 
-  #Handle all warnings
+  # Handle all warnings
   if (warningFlagFit == 1) {
     warning(paste("Exact fits were detected for certain time points.",
                   "Their weights will be set to zero.",
-                  "Check the returned results"),
+                  "Check the returned results."),
             call. = FALSE)
     Result$IndFlagExactFit <- warningIndFit
   }
   if (warningFlagBag == 1) {
     warning(paste("The bagplot could not be computed at all time points.",
                   "Their weights will be set to zero.",
-                  "Check the returned results"),
+                  "Check the returned results."),
             call. = FALSE)
     Result$IndFlagBag <- warningIndBag
   }
   if (warningFlagIso == 1) {
     warning(paste("The isohdepth contours could not be computed at all", 
                   "time points. Their weights will be set to zero.",
-                  "Check the returned results"),
+                  "Check the returned results."),
             call. = FALSE)
     Result$IndFlagIso <- warningIndIso
   }
   if (warningFlagAlpha  ==  1) {
     warning(paste("The specified alpha is too large at all time points.",
                   "Their weights will be set to zero.",
-                  "Check the returned results"),
+                  "Check the returned results."),
             call. = FALSE)
     Result$IndFlagAlpha <- warningIndAlpha
   }

@@ -128,7 +128,7 @@ bagdistance <- function(x, z = NULL, options = list()){
   distances <- rep(0.0, n.points)
 
   #####
-  # Start the real calculations.
+  # Start the actual calculations.
   #####
   if (n.var == 1) {
     # This case is pretty easy.

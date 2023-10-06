@@ -11,7 +11,7 @@ dirOutl(x, z = NULL, options = list())
     \item{x}{An \eqn{n} by \eqn{p} data matrix.}
     \item{z}{An optional \eqn{m} by \eqn{p} matrix containing
              rowwise the points \eqn{z_i} for which to compute
-             the adjusted outlyingness. If \code{z} is not specified,
+             the directional outlyingness. If \code{z} is not specified,
              it is set equal to \code{x}.}
     \item{options}{ A list of available options:
                   \itemize{
@@ -44,7 +44,7 @@ The resulting DO values are invariant to affine transformations, rotations and s
 
 An observation from \code{x} and \code{z} is flagged as an outlier if its DO exceeds a cutoff value. This cutoff value is determined using the procedure in Rousseeuw et al. (2018). First, the logarithm of the DO values is taken to render their distribution more symmetric, after which a normal approximation yields a cutoff on these values. The cutoff is then transformed back by applying the exponential function.
 
-It is first checked whether the data lie in a subspace of dimension smaller than \eqn{p}. If so, a warning is given, as well as the dimension of the subspace and a direction which is orthogonal to it. Furthermore, the univariate adjusted outlyingness of the projected points \eqn{xv} is ill-defined when the scale in its denominator becomes zero. This can happen when many observations collapse. In these cases the algorithm will stop and give a warning. The returned values then include the direction \eqn{v} as well as an indicator specifying which of the observations of \code{x} belong to the hyperplane orthogonal to \eqn{v}.
+It is first checked whether the data lie in a subspace of dimension smaller than \eqn{p}. If so, a warning is given, as well as the dimension of the subspace and a direction which is orthogonal to it. Furthermore, the univariate directional outlyingness of the projected points \code{x}\eqn{v} is ill-defined when the scale in its denominator becomes zero. This can happen when many observations collapse. In these cases the algorithm will stop and give a warning. The returned values then include the direction \eqn{v} as well as an indicator specifying which of the observations of \code{x} belong to the hyperplane orthogonal to \eqn{v}.
 
 }
 \value{
@@ -63,50 +63,38 @@ It is first checked whether the data lie in a subspace of dimension smaller than
                              that the data are not in general position.
                              }
   \item{dimension}{When the data \code{x} are lying in a lower dimensional subspace, the dimension of this subspace.}
-  \item{hyperplane}{When the data \code{x} are lying in a lower dimensional subspace, a direction orthogonal to this subspace. When a direction \eqn{v} is found such that the robust skew-adjusted scale of \eqn{xv} is equal to zero, this equals \eqn{v}.}
-  \item{inSubspace}{When a direction \eqn{v} is found such that DO(\eqn{xv}) is ill-defined, the observations from \code{x} which belong to the hyperplane orthogonal to \eqn{v} receive a value TRUE. The other observations receive a value FALSE.}
+  \item{hyperplane}{When the data \code{x} are lying in a lower dimensional subspace, a direction orthogonal to this subspace. When a direction \eqn{v} is found such that the robust skew-adjusted scale of \code{x}\eqn{v} is equal to zero, this equals \eqn{v}.}
+  \item{inSubspace}{When a direction \eqn{v} is found such that DO(\code{x}\eqn{v}) is ill-defined, the observations from \code{x} which belong to the hyperplane orthogonal to \eqn{v} receive a value TRUE. The other observations receive a value FALSE.}
 }
 \seealso{
   \code{\link{dprojdepth}}, \code{\link{dprojmedian}}, \code{\link{adjOutl}}, \code{\link{outlyingness}}
 
 }
 \references{
-Rousseeuw, P.J., Raymaekers, J., Hubert, M., (2018), A Measure of Directional Outlyingness with Applications to Image Data and Video. \emph{Journal of Computational and Graphical Statistics}, \bold{27}, 345--359.
+Rousseeuw P.J., Raymaekers J., Hubert M. (2018). A measure of directional outlyingness with applications to image data and video. \emph{Journal of Computational and Graphical Statistics}, \bold{27}, 345--359.
 }
-\author{J. Raymaekers and P. Roussseeuw}
+\author{J. Raymaekers and P. Rousseeuw}
 \examples{
-# Compute the directional outlyingness of a simple
-# two-dimensional dataset. Outliers are plotted
-# in red.
-data("geological")
-BivData <- geological[c("MnO","MgO")]
+# Compute the directional outlyingness of a two-dimensional dataset. 
+# Outliers are plotted in red.
+data(geological)
+BivData <- geological[c("MnO", "MgO")]
 Result <- dirOutl(x = BivData)
 IndOutliers <- which(!Result$flagX)
-plot(BivData)
-points(BivData[IndOutliers,], col = "red")
+plot(BivData, pch = 16, col = "grey60")
+points(BivData[IndOutliers, ], pch = 16, col = "red")
 
 # The number of directions may be specified through
-# the option list. The resulting adjusted outlyingness
+# the option list. The resulting directional outlyingness
 # is monotone increasing in the number of directions.
-Result1 <- dirOutl(x = BivData,options = list(ndir = 50))
-Result2 <- dirOutl(x = BivData,options = list(ndir = 100))
+Result1 <- dirOutl(x = BivData, options = list(ndir = 50))
+Result2 <- dirOutl(x = BivData, options = list(ndir = 100))
 which(Result2$outlyingnessX - Result1$outlyingnessX < 0)
 # This is however not the case when the seed is changed
-Result1 <- dirOutl(x = BivData,options = list(ndir = 50))
-Result2 <- dirOutl(x = BivData,options = list(ndir = 100,seed = 950))
+Result1 <- dirOutl(x = BivData, options = list(ndir = 50))
+Result2 <- dirOutl(x = BivData, options = list(ndir = 100, seed = 950))
 
 plot(Result2$outlyingnessX - Result1$outlyingnessX,
      xlab = "Index", ylab = "Difference in DO")
-
-# Consider another example:
-
-data("bloodfat")
-BivData <- bloodfat[1:100,] # Consider a small toy example.
-Result <- dirOutl(x = BivData,options = list(type = "Affine"))
-IndOutliers <- which(!Result$flagX)
-plot(BivData)
-points(BivData[IndOutliers,], col = "red")
-
 }
-
 \keyword{multivariate}

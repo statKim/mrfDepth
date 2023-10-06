@@ -1,6 +1,6 @@
 importFrom("stats",
            "complete.cases", "dbinom", "mad", "median", "qchisq", "quantile",
-           "rnorm", "qnorm")
+           "rnorm", "qnorm", "sd")
 importFrom("grDevices",
            "chull", "extendrange", "rgb")
 importFrom("Rcpp", "evalCpp")
@@ -49,6 +49,6 @@ export(bagplot)
 export(fom)
 #export(centralregion)
 #export(dispersioncurve)
-export(fheatmap)
+export(fHeatmap)
 #export(scalecurve)
 

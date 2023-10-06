@@ -50,12 +50,13 @@ hdepth(x, z = NULL, options = list())
 Halfspace depth has been introduced by Tukey (1975). The halfspace depth of a point \eqn{z_i} is defined as the minimal number of observations from \code{x} that are contained in any closed halfspace with boundary through \eqn{z_i}.
 
 In dimensions \eqn{p=2} and \eqn{p=3} the computations are by default carried out exactly using the algorithms described in Rousseeuw and Ruts (1996) and Rousseeuw and Struyf (1998). This yields an affine invariant measure of depth.
-Approximate algorithms are also implemented which depending on the value chosen for \code{type} are affine, rotation or shift invariant. They can be used in any dimension. The shift invariant algorithm coincides with the random Tukey depth (Cuesta-Albertos and Nieto-Reyes, 2008).
+Approximate algorithms are also implemented which are affine, rotation or shift invariant, depending on the value chosen for \code{type}. They can be used in any dimension. The shift invariant algorithm coincides with the random Tukey depth (Cuesta-Albertos and Nieto-Reyes, 2008).
 
-The resulting halfspace depth values are invariant to affine transformations when the exact algorithm is used and invariant to affine transformations, rotations and shifts depending on the choice for \code{type} provided that the \code{seed} is kept fixed at different runs of the algorithm. Note that the halfspace depth values values are guaranteed to decrease when more directions are considered provided the seed is kept fixed, as this ensures that the random directions are generated in a fixed order.
+The resulting halfspace depth values are invariant to affine transformations when the exact algorithm is used and invariant to affine transformations, rotations and shifts depending on the choice for \code{type}, provided that the \code{seed} is kept fixed at different runs of the algorithm. Note that the halfspace depth values values are guaranteed to decrease when more directions are considered, provided the seed is kept fixed, as this ensures that the random directions are generated in a fixed order.
 
 If the halfspace depth needs to be computed for \eqn{m} points \eqn{z_i}, it is recommended to apply the function once with the matrix \eqn{z} as input, instead of applying it \eqn{m} times with input vectors \eqn{z_i}, as numerous computations can be saved. The approximate algorithms automatically then also compute the depth values of the observations in \code{x}.
-When only the halfspace depth of the observations in \code{x} is required, the call to the function should be 'hdepth(x)' or equivalently 'hdepth(x,x)'. In that case the depth values will be stored in the 'depthZ' output field. For bivariate data these will be the exact values by default.
+When only the halfspace depth of the observations in \code{x} is required, the call to the function should be \code{hdepth(x)} or equivalently \code{hdepth(x,x)}. In that case the depth values will be stored in the 'depthZ' output field. For bivariate data these will be the exact values by default.
+
 To visualize the depth of bivariate data one can apply the \code{mrainbowplot} function. It plots the data colored according to their depth.
 
 It is first checked whether the data lie in a subspace of dimension smaller than \eqn{p}. If so, a warning is given, as well as the dimension of the subspace and a direction which is orthogonal to it.
@@ -88,13 +89,13 @@ It is first checked whether the data lie in a subspace of dimension smaller than
   \code{\link{hdepthmedian}}, \code{\link{mrainbowplot}}, \code{\link{bagdistance}}, \code{\link{bagplot}}
 }
 \references{
-Tukey (1975). Mathematics and the picturing of data. \emph{Proceedings of the International Congress of Mathematicians,} \bold{2}, 523--531, Vancouver.
+Tukey J. (1975). Mathematics and the picturing of data. \emph{Proceedings of the International Congress of Mathematicians,} \bold{2}, 523--531, Vancouver.
 
-Rousseeuw, P.J., Ruts, I. (1996). AS 307: Bivariate location depth. \emph{Journal of the Royal Statistical Society: Series C},  \bold{45}, 516--526.
+Rousseeuw P.J., Ruts I. (1996). AS 307: Bivariate location depth. \emph{Journal of the Royal Statistical Society: Series C}, \bold{45}, 516--526.
 
-Rousseeuw, P.J., Struyf, A. (1998). Computing location depth and regression depth in higher dimensions. \emph{Statistics and  Computing}, \bold{8}, 193--203.
+Rousseeuw P.J., Struyf A. (1998). Computing location depth and regression depth in higher dimensions. \emph{Statistics and  Computing}, \bold{8}, 193--203.
 
-Cuesta-Albertos, J. and Nieto-Reyes, A. (2008). The random Tukey depth. \emph{Computational Statistics & Data Analysis}, \bold{52}:4979--4988.
+Cuesta-Albertos J., Nieto-Reyes A. (2008). The random Tukey depth. \emph{Computational Statistics & Data Analysis}, \bold{52}, 4979--4988.
 }
 \author{P. Segaert based on Fortran code by P.J. Rousseeuw, I. Ruts and A. Struyf, and \code{C++} code by P. Segaert and K. Vakili.}
 \examples{
@@ -139,7 +140,7 @@ plot(Result1$depthZ - Result2$depthZ,
 # We can also consider directions through two data
 # points. If the sample is small enough one may opt
 # to search over all choose(n,2) directions.
-# Note that the computational load increases dramatically
+# Note that the computational load increases substantially
 # as n becomes larger.
 options <- list(type = "Rotation",
                 ndir = "all",

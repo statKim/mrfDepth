@@ -1,4 +1,4 @@
-fheatmap <- function(rowValues, cellValues, type, scalename = ""){
+fHeatmap <- function(rowValues, cellValues, type, legend.title = ""){
 
   ######
   # Check input.
@@ -24,7 +24,7 @@ fheatmap <- function(rowValues, cellValues, type, scalename = ""){
   xy <- expand.grid(x = x, y = y)
 
   if (type == "depth") {
-    Ind <- sort(rowValues, decreasing = TRUE, index.return = TRUE)$ix
+    Ind <- sort(rowValues, decreasing = FALSE, index.return = TRUE)$ix
   }
   else{
     Ind <- sort(rowValues, decreasing = TRUE, index.return = TRUE)$ix
@@ -41,14 +41,14 @@ fheatmap <- function(rowValues, cellValues, type, scalename = ""){
   Plot <- Plot + coord_cartesian(xlim = c(-0.5, ncol(cellValues) + 1.5),
                                  ylim = c(-0.5, nrow(cellValues) + 1.5))
   if (type == "depth") {
-    Plot <- Plot + scale_fill_gradientn(name = scalename,
-                                       colours = c(low = "white",
-                                                   high = "darkgreen"))
+    Plot <- Plot + scale_fill_gradientn(name = legend.title,
+                                        colours = c(low = "white",
+                                                    high = "darkgreen"))
   }
   else{
-    Plot <- Plot + scale_fill_gradientn(name = scalename,
-                                       colours = c(low = "white",
-                                                   high = "darkred"))
+    Plot <- Plot + scale_fill_gradientn(name = legend.title,
+                                        colours = c(low = "white",
+                                                    high = "darkred"))
   }
   Plot <- Plot + scale_y_discrete(breaks = 1:length(Ind),
                                   labels = rev(Ind),

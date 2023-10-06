@@ -10,7 +10,7 @@ Top soil (0-25 cm) and bottom soil (50-75 cm) samples from 768 sites were analys
 data(geological)
 }
 \format{
-A dataframe conraining following variables:
+A data frame containing the following variables:
  \describe{
       \item{\code{Fe2O3}}{ Iron Oxide }
       \item{\code{MgO}}{ Magnesium oxide }
@@ -25,5 +25,8 @@ Reimann C., Siewers U., Tarvainen T., Bityukova L., Eriksson J., Gilucis A.,  Gr
 \examples{
 data(geological)
 plot(geological)
+}
+\references{
+Hubert M., Van der Veeken S. (2008). Outlier detection for skewed data. \emph{Journal of Chemometrics}, \bold{22}, 235--246.
 }
 \keyword{datasets}

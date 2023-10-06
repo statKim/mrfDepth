@@ -10,7 +10,7 @@ Data were collected on the concentration of plasma cholesterol and plasma trigly
 data(bloodfat)
 }
 \format{
-A dataframe conraining following variables:
+A data frame containing the following variables:
  \describe{
       \item{\code{Cholesterol}}{Concentration of plasma cholesterol [mg/dl].}
       \item{\code{Triglycerides}}{Concentration of plasma triglycerides [mg/dl].}

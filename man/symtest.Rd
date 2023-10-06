@@ -15,14 +15,14 @@ symtest(x, z, options=list())
 }
 \details{
  The following hypothesis test is performed: \cr
-    H0: The data come from a continuous distribution \eqn{P} which is angularly symmetric about \code{z}. \cr
-The test statistic being used is the halfspace depth of \code{z} with respect to \code{x}. Under the null hypothesis the halfspace depth of \code{z} equals \eqn{1/2}. The distribution of the teststatistic under H0 is \eqn{F_n(k) = P(hdepth(P, z) \le k)}. The \eqn{p}-value of the test is \eqn{F_n(k)} with \eqn{k= hdepth(x,z)}. 
+ \eqn{H_0}: The data come from a continuous distribution \eqn{P} which is angularly symmetric about \code{z}. \cr
+The test statistic being used is the halfspace depth of \code{z} with respect to \code{x}. Under the null hypothesis the halfspace depth of \code{z} equals \eqn{1/2}. The distribution of the teststatistic under \eqn{H_0} is \eqn{F_n(k) = P(hdepth(P, z) \le k)}. The \eqn{p}-value of the test is \eqn{F_n(k)} with \eqn{k= hdepth(\code{x},z)}. 
 }
 \value{
 	\item{pval}{The \eqn{p}-value of the hypothesis test.}
 }
 \references{
-Rousseeuw, P.J, Struyf, A. (2002). A Depth Test for Symmetry, in:  \emph{ Goodness-of-Fit Tests and Model Validity}, \enc{Birkhäuser}{Birkhauser} Boston,  pp.401--412.
+Rousseeuw P.J, Struyf A. (2002). A depth test for symmetry. In:  \emph{ Goodness-of-Fit Tests and Model Validity}, \enc{Birkhäuser}{Birkhauser} Boston,  pages 401--412.
 }
 
 \author{P. Segaert}
@@ -30,7 +30,9 @@ Rousseeuw, P.J, Struyf, A. (2002). A Depth Test for Symmetry, in:  \emph{ Goodne
 \examples{
 # Perform the test on a simple data example.
 data(cardata90)
-symtest(x = cardata90, z = hdepthmedian(cardata90)$median)
+deepest <- hdepthmedian(cardata90)$median
+symtest(x = cardata90[!duplicated(cardata90), ], z = deepest)
 plot(cardata90)
+points(deepest[1], deepest[2], pch=18, col="red", cex=1.2)
 }
 \keyword{multivariate}

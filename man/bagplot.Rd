@@ -24,19 +24,20 @@ bagplot(compbag.result,
 \details{
 The bagplot has been proposed by Rousseeuw et al. (1999) as a generalisation of the boxplot to bivariate data. It is constructed based on halfspace depth and as such is invariant under affine transformations. Similar graphical representations can be obtained by means of other depth functions, as illustrated in Hubert and Van der Veeken (2008) and in Hubert et al. (2015). See \code{\link{compBagplot}} for more details.
 
-The deepest point is indicated with a "+" sign, the outlying observations with red stars.
+The deepest point is indicated by a red diamond symbol, the outlying observations by red stars.
 
 The plot is made using \code{ggplot2}. The plot itself is returned by the function and is fully customisable using standard \code{ggplot2} commands.
 }
 \seealso{
-  \code{\link{compBagplot}}, \code{\link{hdepth}}, \code{\link{projdepth}}, \code{\link{sprojdepth}}.
+  \code{\link{compBagplot}}, \code{\link{hdepth}}, \code{\link{projdepth}}, \code{\link{sprojdepth}},
+   \code{\link{dprojdepth}}.
 }
 \references{
-Rousseeuw P.J., Ruts I., Tukey, J.W. (1999). The bagplot: a bivariate boxplot. \emph{The American Statistician}, \bold{53}, 382--387.
+Rousseeuw P.J., Ruts I., Tukey J.W. (1999). The bagplot: a bivariate boxplot. \emph{The American Statistician}, \bold{53}, 382--387.
 
 Hubert M., Van der Veeken S. (2008). Outlier detection for skewed data. \emph{Journal of Chemometrics}, \bold{22}, 235--246.
 
-Hubert M., Rousseeuw P.J., Segaert, P. (2015). Rejoinder to 'Multivariate functional outlier detection'. \emph{Statistical Methods & Applications}, \bold{24}, 269--277.
+Hubert M., Rousseeuw P.J., Segaert P. (2015). Rejoinder of 'Multivariate functional outlier detection'. \emph{Statistical Methods & Applications}, \bold{24}, 269--277.
 
 }
 
@@ -45,18 +46,17 @@ Hubert M., Rousseeuw P.J., Segaert, P. (2015). Rejoinder to 'Multivariate functi
 \examples{
 data(bloodfat)
 
-# The bagplot can be plotted for the halfspace depth,
-# the projection depth or the skewness-adjusted projection depth.
-# Note that the projection depth is not appropiate for skewed data.
+# The bagplot can be plotted based on halfspace depth, projection depth,
+# skewness-adjusted projection depth or directional projection depth.
+# Note that projection depth is not appropiate for skewed data.
 bagplot(compBagplot(bloodfat))
 bagplot(compBagplot(bloodfat, type = "projdepth"))
-bagplot(compBagplot(bloodfat, type = "sprojdepth"))
+bagplot(compBagplot(bloodfat, type = "dprojdepth"))
 
-# The mean features of the bagplot can easily be adjusted.
+# The main features of the bagplot can easily be adjusted.
 result <- compBagplot(bloodfat)
 bagplot(result, databag = FALSE, dataloop = FALSE)
-bagplot(result, colorbag = rgb(0.2,0.2,0.2), colorloop = "green")
-
+bagplot(result, colorbag = rgb(0.2, 0.2, 0.2), colorloop = "lightgreen")
 
 data(cardata90)
 result <- compBagplot(cardata90)
@@ -74,7 +74,6 @@ plot
 # edited using standard ggplot2 commands.
 library("ggplot2")
 plot + ylab("Engine displacement") + xlab("Weight in pounds")
-
-
 }
+
 \keyword{Graphical}

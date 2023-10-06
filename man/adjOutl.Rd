@@ -51,7 +51,7 @@ The resulting AO values are invariant to affine transformations, rotations and s
 
 An observation from \code{x} and \code{z} is flagged as an outlier if its AO exceeds a cutoff value. This cutoff value is determined using the procedure in Rousseeuw et al. (2018). First, the logarithm of the AO values is taken to render their distribution more symmetric, after which a normal approximation yields a cutoff on these values. The cutoff is then transformed back by applying the exponential function.
 
-It is first checked whether the data lie in a subspace of dimension smaller than \eqn{p}. If so, a warning is given, as well as the dimension of the subspace and a direction which is orthogonal to it. Furthermore, the univariate adjusted outlyingness of the projected points \eqn{xv} is ill-defined when the scale in its denominator becomes zero. This can happen when many observations collapse. In these cases the algorithm will stop and give a warning. The returned values then include the direction \eqn{v} as well as an indicator specifying which of the observations of \code{x} belong to the hyperplane orthogonal to \eqn{v}.
+It is first checked whether the data lie in a subspace of dimension smaller than \eqn{p}. If so, a warning is given, as well as the dimension of the subspace and a direction which is orthogonal to it. Furthermore, the univariate adjusted outlyingness of the projected points \code{x}\eqn{v} is ill-defined when the scale in its denominator becomes zero. This can happen when many observations collapse. In these cases the algorithm will stop and give a warning. The returned values then include the direction \eqn{v} as well as an indicator specifying which of the observations of \code{x} belong to the hyperplane orthogonal to \eqn{v}.
 
 This function extends the \code{adjOutlyingness} function in the package \code{robustbase}. It has more options for choosing the directions, it allows to compute the adjusted outlyingness of points not belonging to the data matrix \code{x} and it is faster as it is fully implemented in C++. On the other hand, the constants (3 and -4) used in the definition of the adjusted outlyingness can not be modified in this implementation.
 }
@@ -75,8 +75,8 @@ This function extends the \code{adjOutlyingness} function in the package \code{r
                              times this happens.
                              }
   \item{dimension}{When the data \code{x} are lying in a lower dimensional subspace, the dimension of this subspace.}
-  \item{hyperplane}{When the data \code{x} are lying in a lower dimensional subspace, a direction orthogonal to this subspace. When a direction \eqn{v} is found such that the robust skew-adjusted scale of \eqn{xv} is equal to zero, this equals \eqn{v}.}
-  \item{inSubspace}{When a direction \eqn{v} is found such that AO(\eqn{xv}) is ill-defined, the observations from \code{x} which belong to the hyperplane orthogonal to \eqn{v} receive a value TRUE. The other observations receive a value FALSE.}
+  \item{hyperplane}{When the data \code{x} are lying in a lower dimensional subspace, a direction orthogonal to this subspace. When a direction \eqn{v} is found such that the robust skew-adjusted scale of \code{x}\eqn{v} is equal to zero, this equals \eqn{v}.}
+  \item{inSubspace}{When a direction \eqn{v} is found such that AO(\code{x}\eqn{v}) is ill-defined, the observations from \code{x} which belong to the hyperplane orthogonal to \eqn{v} receive a value TRUE. The other observations receive a value FALSE.}
 }
 \seealso{
   \code{\link{sprojdepth}}, \code{\link{sprojmedian}}, \code{\link{dirOutl}}, \code{\link{outlyingness}}
@@ -91,14 +91,14 @@ This function extends the \code{adjOutlyingness} function in the package \code{r
 
  Hubert M., Vandervieren E. (2008). An adjusted boxplot for skewed distributions. \emph{Computational Statistics & Data Analysis}, \bold{52}, 5186--5201.
 
-Rousseeuw, P.J., Raymaekers, J., Hubert, M., (2018), A Measure of Directional Outlyingness with Applications to Image Data and Video. \emph{Journal of Computational and Graphical Statistics}, \bold{27}, 345--359.
+Rousseeuw P.J., Raymaekers J., Hubert M., (2018). A measure of directional outlyingness with applications to image data and video. \emph{Journal of Computational and Graphical Statistics}, \bold{27}, 345--359.
 }
 \author{P. Segaert using \code{C++} code by K. Vakili, P. Segaert, G. Brys and M. Maechler.}
 \examples{
 # Compute the adjusted outlyingness of a simple
 # two-dimensional dataset. Outliers are plotted
 # in red.
-data("geological")
+data(geological)
 BivData <- geological[c("MnO","MgO")]
 Result <- adjOutl(x = BivData)
 IndOutliers <- which(!Result$flagX)
@@ -131,7 +131,7 @@ plot(Result2$outlyingnessX - Result1$outlyingnessX,
 # to search over all choose(n,2) directions.
 # Note that the computational load increases dramatically
 # as n becomes larger.
-data("bloodfat")
+data(bloodfat)
 BivData <- bloodfat[1:100,] # Consider a small toy example.
 Result <- adjOutl(x = BivData,
                   options = list(type = "Rotation",
@@ -142,11 +142,11 @@ plot(BivData)
 points(BivData[IndOutliers,], col = "red")
 
 # Alternatively one may consider randomly generated directions.
-data("bloodfat")
-Result = adjOutl(x = bloodfat,
-                 options = list(type = "Shift",
-                                ndir = 1000)
-                 )
+data(bloodfat)
+Result <- adjOutl(x = bloodfat,
+                  options = list(type = "Shift",
+                                 ndir = 1000)
+                  )
 IndOutliers <- which(!Result$flagX)
 plot(bloodfat)
 points(bloodfat[IndOutliers,], col = "red")

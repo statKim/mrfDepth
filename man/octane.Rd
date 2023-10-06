@@ -1,24 +1,26 @@
 \name{octane}
 \alias{octane}
-\title{Near infrared spectra of gasoline samples.}
+\title{Near infrared spectra of gasoline samples}
 \description{
-The last six observations contain added ethanol.
+Near infrared absorbance spectra (NIR) of 39 gasoline samples over 226 wavelengths ranging from 1102nm to 1552nm with measurements every two nanometers. Six of the samples (25, 26, 36-39) contain added alcohol.
 }
 \usage{
 data(octane)
 }
 \format{
-Matrix observations correspond to rows.
+A three-dimensional \eqn{t = 226} by \eqn{n = 39} by \eqn{p = 1} array.
 }
 \source{
-Esbensen K. (2001). Multivariate data analysis in practice. \emph{5th edn. Camo Software}, Trondheim, Norway
+Esbensen K., Schonkopf S., Midtgaard T. (1994). Multivariate Analysis
+in Practice. Trondheim: Camo.
 }
 \references{
-Rousseeuw P.J., Debruyne M., Engelen S., Hubert M. (2006). Robustness and outlier detection in chemometrics. \emph{
-Critical Reviews in Analytical Chemistry}, \bold{36}, 221--242.
+Hubert M., Rousseeuw P.J., Vanden Branden K. (2005).
+ROBPCA: a new approach to robust principal component analysis.
+\emph{Technometrics}, \bold{47}, 64--79.
 }
 \examples{
 data(octane)
-matplot(octane[,,1], type="l", lty=1, col = "black")
+matplot(octane[,1:30,1], type = "l", lty = 1, col = "black")
 }
 \keyword{datasets}

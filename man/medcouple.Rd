@@ -2,7 +2,7 @@
 \alias{medcouple}
 \title{A robust measure of skewness for univariate data}
 \description{
-Computes the medcouple, a robust measure of skewness for univariate data. For multivariate data the medcouple is calculated on each column of the data matrix.
+Computes the medcouple, a robust measure of skewness for univariate data. For multivariate data the medcouple is computed on each column of the data matrix.
 }
 \usage{
 medcouple(x, do.reflect = NULL)
@@ -41,7 +41,7 @@ Note that missing values are not allowed.
 data(bloodfat)
 medcouple(bloodfat)
 
-# For smaller data sets it is advisable to calculate
+# For smaller data sets it is advisable to compute
 # the medcouple on both the sample and the reflected sample.
 small.data <- bloodfat[1:25,]
 medcouple(small.data, do.reflect = FALSE)

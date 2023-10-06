@@ -59,7 +59,7 @@ outlyingness(x, z = NULL, options = list())
 The Stahel-Donoho outlyingness has been introduced by Stahel (1981) and Donoho (1982).
 It is mostly suited to measure the degree of outlyingness of multivariate points with respect to a data cloud from an elliptical distribution.
 
-Depending on the dimension \eqn{p}, different approximate algorithms are implemented. The affine invariant algorithm can only be used when \eqn{n > p}. It draws \code{ndir} times at random \eqn{p} observations from \code{x} and considers the direction orthogonal to the hyperplane spanned by these \eqn{p} observations. At most \eqn{p} out of \eqn{n} directions can be considered. The orthogonal invariant version can be applied to high-dimensional data. It draws \code{ndir} times at random \eqn{2} observations from \code{x} and considers the direction through these observations. Here, at most 2 out of \eqn{n} directions can be considered. Finally, the shift invariant version randomly draws \code{ndir} vectors from the unit sphere.
+Depending on the dimension \eqn{p}, different approximate algorithms are implemented. The affine invariant algorithm can only be used when \eqn{n > p}. It draws \code{ndir} times at random \eqn{p} observations from \code{x} and considers the direction orthogonal to the hyperplane spanned by these \eqn{p} observations. At most \eqn{p} out of \eqn{n} directions can be considered. The orthogonal invariant version can be applied to high-dimensional data. It draws \code{ndir} times at random 2 observations from \code{x} and considers the direction through these observations. Here, at most 2 out of \eqn{n} directions can be considered. Finally, the shift invariant version randomly draws \code{ndir} vectors from the unit sphere.
 
 The resulting  Stahel-Donoho outlyingness values are invariant to affine transformations, rotations and shifts respectively provided that the \code{seed} is kept fixed at different runs of the algorithm. Note that the SDO values are guaranteed to increase when more directions are considered provided the seed is kept fixed, as this ensures that the random directions are generated in a fixed order.
 
@@ -100,14 +100,13 @@ Donoho D.L. (1982). Breakdown properties of multivariate location estimators. Ph
 
 Maronna R.A., Yohai V. (1995). The behavior of the Stahel-Donoho robust multivariate estimator. \emph{Journal of the American Statistical Association}, \bold{90}, 330--341.
 
-Rousseeuw, P.J., Raymaekers, J., Hubert, M., (2018), A Measure of Directional Outlyingness with Applications to Image Data and Video. \emph{Journal of Computational and Graphical Statistics}, \bold{27}, 345--359.
+Rousseeuw P.J., Raymaekers J., Hubert M., (2018). A measure of directional outlyingness with applications to image data and video. \emph{Journal of Computational and Graphical Statistics}, \bold{27}, 345--359.
 }
 
 
 \author{P. Segaert using \code{C++} code by K. Vakili and P. Segaert.}
 
 \examples{
-
 # Compute the outlyingness of a simple two-dimensional dataset.
 # Outliers are plotted in red.
 
@@ -115,7 +114,7 @@ if (requireNamespace("robustbase", quietly = TRUE)) {
     BivData <- log(robustbase::Animals2)
 } else {
   BivData <- matrix(rnorm(120), ncol = 2)
-  BivData <- rbind(BivData, matrix(c(6,6, 6, -2), ncol = 2))
+  BivData <- rbind(BivData, matrix(c(6,6,6,-2), ncol = 2))
 }
 
 Result <- outlyingness(x = BivData)
@@ -147,7 +146,7 @@ plot(Result2$outlyingnessX - Result1$outlyingnessX,
 # We can also consider directions through two data
 # points. If the sample is small enough one may opt
 # to search over all choose(n,2) directions.
-# Note that the computational load increases dramatically
+# Note that the computational load increases considerably
 # as n becomes larger.
 Result <- outlyingness(x = BivData,
                        options = list(type = "Rotation",
@@ -171,13 +170,12 @@ points(BivData[IndOutliers,], col = "red")
 Result <- outlyingness(x = BivData,
                        options = list(type = "Affine",
                                       ndir = 1000,
-                                      stand = "MedMad",
-                                      h = nrow(BivData))
+                                      stand = "unimcd",
+                                      h = 0.75*nrow(BivData))
                       )
 IndOutliers <- which(!Result$flagX)
 plot(BivData)
 points(BivData[IndOutliers,], col = "red")
-
 }
 
 \keyword{multivariate}

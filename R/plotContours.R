@@ -69,12 +69,13 @@ plotContours <- function(x, depthContour, data = TRUE) {
   } else if (depthContour$type == "projdepth") {
     title.label <- paste("Projection depth contours")
   } else if (depthContour$type == "sprojdepth") {
-    title.label <- paste("Skew-adjusted projection depth contours")
+    title.label <- paste("Skewness-adjusted projection depth contours")
+  } else if (depthContour$type == "dprojdepth") {
+    title.label <- paste("Directional projection depth contours")
   } else{
     title.label <- ""
   }
   plot <- plot + ggtitle(title.label)
-
 
   return(plot)
 

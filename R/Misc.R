@@ -1,11 +1,13 @@
 
 mrfDepth_theme <- function() {
   A <- theme_classic(base_size = 12, base_family = "") +
-    theme(panel.background =  element_rect(fill = NA,
-                                           colour = "black",
-                                           size = 0.25),
-          plot.margin = ggplot2::unit(c(1, 1, 1, 1), "cm")
+    theme(panel.border = element_rect(colour = "black", 
+                                      fill = NA, 
+                                      linewidth = 0.5),
+          plot.margin = ggplot2::unit(c(1, 1, 1, 1), "cm"),
+          plot.title = element_text(hjust = 0.5)
     )
+  A$axis.line$linewidth <- 0
   return(A)
 }
 

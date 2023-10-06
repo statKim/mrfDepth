@@ -1,6 +1,5 @@
 hdepthmedian <- function(x, maxdir = NULL) {
 
-    ######
   # Check input.
   if (missing(x)) {
     stop("The input argument x is required.")
@@ -17,7 +16,7 @@ hdepthmedian <- function(x, maxdir = NULL) {
     stop("Missing values in x are not allowed.")
   }
 
-  #maxdir
+  # maxdir
   if (is.null(maxdir)) {
     maxdir <- 250 * p
   }
@@ -36,8 +35,6 @@ hdepthmedian <- function(x, maxdir = NULL) {
   ntry <- 10 * (p + 1)
   nalt <- 4 * (p + 1)
 
-  #####
-  # Check data for possible exact fit situations.
   # Check data for possible exact fit situations.
   tol <- 1e-7
   scaled.x <- scale(x)
@@ -83,8 +80,7 @@ hdepthmedian <- function(x, maxdir = NULL) {
     return(returned.result)
   }
 
-  #####
-  # Do the calculations
+  # Actual computations
 
   if (p == 1) {
     returned.result <- list(median = median(x),
@@ -106,7 +102,7 @@ hdepthmedian <- function(x, maxdir = NULL) {
               as.double(0),                    #5 Depth of halfspace median.
               as.integer(0),                   #6 Logical indicating dithering.
               PACKAGE = "mrfDepth")
-    returned.result <- list(median = Result[[4]],
+    returned.result <- list(median = matrix(Result[[4]],  ncol = 2),
                             depth = Result[[5]],
                             dithered = as.logical(Result[[6]]),
                             ndir = NULL,
@@ -131,7 +127,7 @@ hdepthmedian <- function(x, maxdir = NULL) {
                 as.integer(0),        #11 Number of directions used.
                 as.integer(0),        #12 Number of steps used.
                 PACKAGE = "mrfDepth")
-    returned.result <- list(median = Result[[8]],
+    returned.result <- list(median = matrix(Result[[8]], ncol = p),
                             depth = Result[[9]],
                             dithered = NULL,
                             ndir  =  Result[[11]],

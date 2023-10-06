@@ -67,49 +67,49 @@ bagplot <- function(compbag.result,
   data.reg <- data.inloop[chull(data.inloop), ]
   colnames(data.reg) <- c("x", "y")
   plot <- plot + geom_polygon(data = data.reg,
-                             mapping = aes_string(x = "x", y = "y"),
-                             fill = colorloop)
+                              mapping = aes_string(x = "x", y = "y"),
+                              fill = colorloop)
 
   # Add the filled bag
   data.reg <- data.bagcontour[chull(data.bagcontour), ]
   colnames(data.reg) <- c("x", "y")
   plot <- plot + geom_polygon(data = data.reg,
-                             mapping = aes_string(x = "x", y = "y"),
-                             fill = colorbag)
+                              mapping = aes_string(x = "x", y = "y"),
+                              fill = colorbag)
 
   # Add the innermost contour if applicable
   if (nrow(compbag.result$chull) > 1) {
     data.chull <- data.frame(compbag.result$chull)
     colnames(data.chull) <- c("x", "y")
     plot <- plot + geom_polygon(data = data.chull,
-                               mapping = aes_string(x = "x", y = "y"),
-                               fill = colorchull)
+                                mapping = aes_string(x = "x", y = "y"),
+                                fill = colorchull)
   }
 
   # Add the center
   data.reg <- data.frame(matrix(compbag.result$center, ncol = 2))
   colnames(data.reg) <- c("x", "y")
   plot <- plot + geom_point(data = data.reg,
-                           mapping = aes_string(x = "x", y = "y"),
-                           shape = 23, size = 4, color = "red", fill = "red"
+                            mapping = aes_string(x = "x", y = "y"),
+                            shape = 23, size = 4, color = "red", fill = "red"
                            )
   # If requested plot the points
   if (databag) {
     plot <- plot + geom_point(data = data.inbag,
-                             mapping = aes_string(x = "x", y = "y")
+                              mapping = aes_string(x = "x", y = "y")
                     )
   }
   if (dataloop) {
     plot <- plot + geom_point(data = data.inloop,
-                             mapping = aes_string(x = "x", y = "y")
+                              mapping = aes_string(x = "x", y = "y")
                              )
   }
 
   # Plot outliers
   if (nrow(data.outliers) > 0) {
     plot <- plot + geom_point(data = data.outliers,
-                             mapping = aes_string(x = "x", y = "y"),
-                             shape = 8, color = "red"
+                              mapping = aes_string(x = "x", y = "y"),
+                              shape = 8, color = "red"
                              )
   }
 
@@ -132,10 +132,12 @@ bagplot <- function(compbag.result,
     label.title <- paste("Bagplot based on projection depth")
   } else if (compbag.result$type == "sprojdepth") {
     label.title <- paste("Bagplot based on skewness-adjusted projection depth")
-  } else{
+  } else if (compbag.result$type == "dprojdepth") {
+    label.title <- paste("Bagplot based on directional projection depth")
+  } else {
     label.title <- paste("Bagplot based on", compbag.result$type, "depth")
   }
-  plot <- plot + ggtitle(label.title) + theme(plot.title = element_text(hjust = 0.5))
+  plot <- plot + ggtitle(label.title)
 
   return(plot)
 

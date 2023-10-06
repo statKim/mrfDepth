@@ -13,10 +13,11 @@ dprojdepth(x, z = NULL, options = NULL)
              in the rows and variables in the columns.}
     \item{z}{An optional \eqn{m} by \eqn{p} matrix containing
              rowwise the points \eqn{z_i} for which to compute
-             the projection depth. If \code{z} is not specified,
+             the directional projection depth. If \code{z} is not specified,
              it is set equal to \code{x}.}
   \item{options}{ A list of options to pass to the underlying \code{dirOutl} routine.
-                  See \code{dirOutl} for the full list of options. }
+  
+  See \code{dirOutl} for the full list of options. }
 }
 \details{
  Directional projection depth is based on the directional
@@ -76,7 +77,7 @@ dprojdepth(x, z = NULL, options = NULL)
   \code{\link{dirOutl}}, \code{\link{dprojmedian}}, \code{\link{mrainbowplot}}, \code{\link{adjOutl}}, \code{\link{outlyingness}}
 }
 \references{
-Rousseeuw, P.J., Raymaekers, J., Hubert, M., (2018), A Measure of Directional Outlyingness with Applications to Image Data and Video. \emph{Journal of Computational and Graphical Statistics}, \bold{27}, 345--359.\\
+Rousseeuw, P.J., Raymaekers, J., Hubert, M. (2018). A measure of directional outlyingness with applications to image Data and video. \emph{Journal of Computational and Graphical Statistics}, \bold{27}, 345--359.
 }
 \author{J. Raymaekers}
 \examples{
@@ -97,7 +98,8 @@ mrainbowplot(x = bloodfat,
 
 # Options for the underlying outlyingness routine may be passed 
 # using the options argument. 
-Result <- dprojdepth(x = bloodfat,options = list(type = "Affine",ndir=100))
+Result <- dprojdepth(x = bloodfat, 
+                     options = list(type = "Affine", ndir=100))
 
 }
 \keyword{multivariate}

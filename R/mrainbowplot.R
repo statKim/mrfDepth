@@ -68,8 +68,8 @@ mrainbowplot <- function(x, depths, col = NULL, plot.options = list()) {
   if (!is.list(plot.options)) {
     stop("options must be a list")
   }
-  if ("legend.title" %in% names(options)) {
-    legend.title <- options[["legend.title"]]
+  if ("legend.title" %in% names(plot.options)) {
+    legend.title <- plot.options[["legend.title"]]
   } else {
     legend.title <- "Depth"
   }
@@ -95,8 +95,7 @@ mrainbowplot <- function(x, depths, col = NULL, plot.options = list()) {
   plot <- plot + geom_point(data = plot.data,
                           mapping = aes_string(x = "x", y = "y",
                                                   colour = "depth"),
-                          size = point.size
-                             )
+                          size = point.size)
   # Make a colorbal scale
   plot <- plot + scale_colour_gradientn(colours = RGBCols, name = legend.title)
   plot

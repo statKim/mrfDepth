@@ -4,7 +4,7 @@
 \description{
 Computes the regression depth of several hyperplanes with
  respect to a multiple regression dataset with \eqn{p} explanatory variables.
- The calculation is exact for \eqn{p <= 3}.
+ The computation is exact for \eqn{p <= 3}.
  An approximate algorithm is used for \eqn{p>3}.
 }
 \usage{
@@ -38,16 +38,16 @@ dimension smaller than \eqn{p + 1}. If so, a warning is given, as well as the  d
   \code{\link{rdepthmedian}}, \code{\link{cmltest}}
 }
 \references{
-Rousseeuw, P.J., Hubert, M. (1999). Regression depth.  \emph{Journal of the American Statistical Association}, \bold{94}, 388--402.
+Rousseeuw P.J., Hubert M. (1999). Regression depth.  \emph{Journal of the American Statistical Association}, \bold{94}, 388--402.
 
-Rousseeuw, P.J., Struyf A. (1998). Computing location depth and regression depth in higher dimensions.  \emph{Statistics and Computing}, \bold{45}, 193--203.
+Rousseeuw P.J., Struyf A. (1998). Computing location depth and regression depth in higher dimensions.  \emph{Statistics and Computing}, \bold{45}, 193--203.
 }
 \author{P. Segaert using Fortran code by P.J. Rousseeuw, I. Ruts and A. Struyf}
 \examples{
 # Illustrate the concept of regression depth in the case of simple 
 # linear regression. 
 
-data("stars")
+data(stars)
 
 # Compute the least squares fit. Due to outliers
 # this fit will be bad and thus should result in a small
@@ -75,9 +75,11 @@ z <- rbind(cbind(6.2, 0),
 result <- rdepth(x = stars, z = z)
 abline(a = 6.2, b = 0, col = "blue")
 abline(a = 6.5, b = 0, col = "darkgreen")
-text(x = 3.8, y = 6.25, labels = round(result$depthZ[1], digits =2), col = "blue")
-text(x = 4, y = 6.55, labels = round(result$depthZ[2], digits =2), col = "darkgreen")
-# One point needs to removed to make the blue line a nonfit. The green line is clearly
-# a nonfit. 
+text(x = 3.8, y = 6.25, labels = round(result$depthZ[1], digits = 2),
+     col = "blue")
+text(x = 4, y = 6.55, labels = round(result$depthZ[2], digits = 2), 
+     col = "darkgreen")
+# One point needs to removed to make the blue line a nonfit. The green line is 
+# clearly a nonfit. 
 }
 \keyword{regression}

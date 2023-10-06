@@ -2,8 +2,7 @@
 \alias{bagdistance}
 \title{Bagdistance of points relative to a dataset}
 \description{
-Computes the bagdistance of \eqn{p}-dimensional points \code{z} relative to a \eqn{p}-dimensional dataset \code{x}. To compute the bagdistance of a point \eqn{z_i} the bag of \code{x} which is defined as the depth region containing the 50\% observations with largest depth. Next, the ray from the halfspace median \eqn{\theta} through \eqn{z_i} is considered and \eqn{c_z} is defined as the intersection of this ray and the boundary of the bag. The bagdistance of \eqn{z_i} to \code{x} is then given by the ratio between
-the Euclidean distance of \eqn{z_i} to the halfspace median and the Euclidean distance of \eqn{c_z} to the halfspace median.
+Computes the bagdistance of \eqn{p}-dimensional points \code{z} relative to a \eqn{p}-dimensional dataset \code{x}. To compute the bagdistance of a point \eqn{z_i} first the bag of \code{x} is computed as the depth region containing the 50\% observations (of \code{x}) with largest halfspace depth. Next, the ray from the halfspace median \eqn{\theta} through \eqn{z_i} is considered and \eqn{c_z} is defined as the intersection of this ray and the boundary of the bag. The bagdistance of \eqn{z_i} to \code{x} is then given by the ratio between the Euclidean distance of \eqn{z_i} to the halfspace median and the Euclidean distance of \eqn{c_z} to the halfspace median.
 }
 \usage{
 bagdistance(x, z = NULL, options = list())
@@ -12,13 +11,12 @@ bagdistance(x, z = NULL, options = list())
 	\item{x}{An \eqn{n} by \eqn{p} data matrix.}
   \item{z}{An optional \eqn{m} by \eqn{p} matrix containing
              rowwise the points \eqn{z_i} for which to compute
-             the adjusted outlyingness. If \code{z} is not specified,
-             it is set equal to \code{x}. is not specified,
-           it is set equal to \code{x}.}
+             the bagdistance. If \code{z} is not specified,
+             it is set equal to \code{x}.}
   \item{options}{A list of available options:
                 \itemize{
                       \item{ \code{approx} \cr
-                           In two dimension one may choose to use an approximate algorithm or the exact algorithm to find the bag. \cr
+                           In two dimensions one may choose to use an approximate algorithm or the exact algorithm to find the bag. \cr
                            Defaults to \code{TRUE}.
                            }
                       \item{ \code{max.iter} \cr
@@ -38,7 +36,7 @@ bagdistance(x, z = NULL, options = list())
   \item{hyperplane}{When the data \code{x} are lying in a lower dimensional subspace, a direction orthogonal to this subspace.}
 }
 \details{
-The bagdistance has been introduced in Hubert et al. (2015). It does not assume symmetry and is affine invariant. Note that when the halfspace is not computed in an affine invariant wat, the bagdistance cannot be affine invariant either. 
+The bagdistance has been introduced in Hubert et al. (2015) and studied in Hubert et al. (2017). It does not assume symmetry and is affine invariant. Note that when the halfspace is not computed in an affine invariant way, the bagdistance cannot be affine invariant either. 
 
 The function first computes the halfspace depth and the halfspace median of \code{x}. Additional options may be passed to the \code{hdepth} routine by specifying them in the \code{option} list argument.
 
@@ -63,39 +61,38 @@ Hubert M., Rousseeuw P.J., Segaert P. (2017). Multivariate and functional classi
 
 \examples{
 # Generate some bivariate data
-nObs <-500
-N <- matrix(rnorm(nObs * 2), nrow = nObs, ncol = 2)
+set.seed(5)
+nObs <- 500
+XS <- matrix(rnorm(nObs * 2), nrow = nObs, ncol = 2)
 A <- matrix(c(1,1,.5,.1), ncol = 2, nrow = 2)
-X <- N%*%A
+X <- XS \%*\% A
 
 # In two dimensions we may either use the approximate
-# or exact algorithm to compute the bag.
+# or the exact algorithm to compute the bag.
 respons.exact <- bagdistance(x = X, options = list(approx = FALSE))
 respons.approx <- bagdistance(x = X, options = list(approx = TRUE))
-# The approximate algorithm leads to a good approximation.
+# Both algorithms yield fairly similar results.
 plot(respons.exact$bagdistance, respons.approx$bagdistance)
 abline(a = 0, b = 1)
 
 # In Hubert et al. (2015) it was shown that for elliptical
-# distributions the bagdistance^2 relates to the Mahalanobis
-# distances. This may easily be illustrated.
+# distributions the squared bagdistance relates to the 
+# squared Mahalanobis distances. This may be easily illustrated.
 mahDist <- mahalanobis(x = X, colMeans(X), cov(X))
 plot(respons.exact$bagdistance^2, mahDist)
 
-# Computation for the bagdistance relies on the calculation
+# Computation of the bagdistance relies on the computation
 # of halfspace depth using the hdepth function. Options for
 # the hdepth routine can be passed down using the options
-# arguments. Note that the affine invariance of the bagdistance
-# depens on the affine invariant calculation of the halfspace
-# depth. Choosing a different type for hdepth may lead to 
-# unsatisfying results. 
+# arguments. Note that the bagdistance is only affine invariant
+# if the halfspace depth is computed in an affine invariant way. 
 options <-list(type = "Rotation",
                ndir = 375,
                approx = TRUE,
                seed = 78341)
-respons.exact <- bagdistance(x = X, options = options)
-
-
+respons.approx.rot <- bagdistance(x = X, options = options)
+plot(respons.exact$bagdistance, respons.approx.rot$bagdistance)
+abline(a = 0, b = 1)
 }
 
 \keyword{multivariate}

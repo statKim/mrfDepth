@@ -9,7 +9,7 @@ symtest <- function(x, z, options = list()){
     stop("Input argument z is required.")
   }
 
-  #Check the x data.
+  # Check the x data.
   x <- data.matrix(x)
   if (!is.numeric(x)) {
     stop("The input argument x must be a numeric data matrix.")
@@ -26,8 +26,11 @@ symtest <- function(x, z, options = list()){
     stop("Only applicable to bivariate data.")
   }
   
+  if (anyDuplicated(x)) {
+    stop("Ties in x are not allowed.")
+  }
 
-  #Check z argument
+  # Check z argument
   if (!is.numeric(z)) {
     stop("The input argument z must be a numeric data matrix.")
   }
@@ -49,7 +52,7 @@ symtest <- function(x, z, options = list()){
     stop("Data matrix z must have one row.")
   }
 
-  #check options
+  # check options
   if (is.null(options)) {
     options <- list()
   }
@@ -57,11 +60,11 @@ symtest <- function(x, z, options = list()){
     stop("options must be a list")
   }
 
-  #Perform the test
+  # Perform the test
   Temp <- hdepth(x = x, z = z, options = options)
   if (is.nan(Temp$depthZ[1])) {
     stop("The depth of z could not be calculated.
-         Check the return of hdepth(x,z = z).")
+         Check the return of hdepth(x, z = z).")
   }
 
   k <- floor(Temp$depthZ[1] * n1)

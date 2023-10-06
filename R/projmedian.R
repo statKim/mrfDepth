@@ -6,7 +6,7 @@ projmedian <- function(x, projection.depths = NULL, options = NULL){
     stop("Input argument x is required.")
   }
 
-  #Check the x data.
+  # Check the x data.
   x <- data.matrix(x)
   if (!is.numeric(x)) {
     stop("The input argument x must be a numeric data matrix.")
@@ -15,7 +15,7 @@ projmedian <- function(x, projection.depths = NULL, options = NULL){
   if (n1 > sum(complete.cases(x))) {
     stop("Missing values in x are not allowed.")
   }
-  #check projection.depths
+  # check projection.depths
   if (!is.null(projection.depths)) {
     projection.depths <- data.matrix(projection.depths)
     n2 <- nrow(projection.depths)
@@ -34,7 +34,7 @@ projmedian <- function(x, projection.depths = NULL, options = NULL){
       stop("The user supplied depths must take values in ]0,1].")
     }
   }
-  #check options
+  # check options
   if (is.null(options)) {
     options <- list()
   }
@@ -59,33 +59,24 @@ projmedian <- function(x, projection.depths = NULL, options = NULL){
 findCenterProj <- function(x, projection.depths){
   n <- nrow(x)
   p <- ncol(x)
-  center <- vector("list", 4)
+  center <- vector("list", 2)
 
-  #max.depth
+  # max.depth
   max.depth <- max(projection.depths)
   ind.max.depths <- which(projection.depths == max.depth)
   center[[1]] <- colMeans(matrix(x[ind.max.depths, ], ncol = p))
   center[[1]] <- matrix(center[[1]], ncol = p)
   names(center)[1] <- "max"
 
-
-  #Gravity
-  cut.off <- median(projection.depths)
-  ind.grav.depths <- which(projection.depths >= cut.off)
-  center[[2]] <- colMeans(matrix(x[ind.grav.depths, ], ncol = p))
-  center[[2]] <- matrix(center[[2]], ncol = p)
-  names(center)[2] <- "gravity"
-
-
-  #Huber
+  # Huber
   weights <- matrix(rep(1, n), ncol = 1)
   cut.off <- sqrt(qchisq(0.95, df = p))
   ind.huber <- which( projection.depths <= (1 / (1 + cut.off)) )
   outlyingness <- 1 / projection.depths[ind.huber] - 1
   weights[ind.huber] <- (cut.off / outlyingness) ^ 2
-  center[[3]] <- t( (t(x) %*% weights) / n )
-  center[[3]] <- matrix(center[[3]], ncol = p)
-  names(center)[3] <- "Huber"
+  center[[2]] <- t( (t(x) %*% weights) / n )
+  center[[2]] <- matrix(center[[2]], ncol = p)
+  names(center)[2] <- "Huber"
 
   return(center)
 }

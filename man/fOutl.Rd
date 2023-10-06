@@ -22,10 +22,9 @@ functional data.
                 If \code{z} is not specified, it is set equal to \code{x}. 
                 The time points of \code{z} should correspond to those of 
                 \code{x}. }
-    \item{type}{The depth used in the computations.
-                The outlyingness measure used in the computations.
-                One of the following options: \code{"fSDO"},
-                \code{"fAO"}, \code{"fDO"} or \code{"fbd"}. \cr
+    \item{type}{The outlyingness measure used in the computations.
+                One of the following options: \code{"fAO"}, \code{"fSDO"},
+                \code{"fDO"} or \code{"fbd"}. \cr
                 Defaults to \code{"fAO"}.}
    \item{alpha}{Specifies the weights at every cross-section. 
                 When \code{alpha = 0}, uniform weights are used. Otherwise
@@ -45,8 +44,8 @@ functional data.
                   Defaults to FALSE.
                   }
 \item{distOptions}{A list of options to pass to the function
-                   calculating the cross-sectional distances. \cr
-                    See \code{outlyingness}, \code{adjOutl}, or
+                   computing the cross-sectional distances. \cr
+                    See \code{adjOutl}, \code{outlyingness}, \code{dirOutl}, or
                     \code{bagdistance}.}
 }
 \details{
@@ -54,19 +53,20 @@ The functional outlyingness of a multivariate curve with respect to a
 given set of multivariate curves is defined as the weighted average of its 
 multivariate outlyingness at each time point (Hubert et al., 2015). 
 The functional outlyingness can be computed in all dimensions \eqn{p} using
-bagdistance, projection depth and skewness-adjusted projection depth. 
+the adjusted outlyingness (\code{fAO}), the directional outlyingness (\code{fDO}), 
+the Stahel-Donoho outlyingness (\code{fSDO}) or the bagdistance (\code{fbd}). 
 
 When the data array \code{z} is specified, the functional outlyingness and diagnostic 
 information for the data array \code{x} is also returned whenever the underlying
 outlyingness routine allows it. For more information see the specific routines 
-listed in the section "See Also"
+listed in the section "See Also".
 
 In some situations, additional diagnostics are available to flag outlying time 
 points. At each time point, observations from the data array \code{x} are marked
 if they are flagged as outliers. The observations from the data array \code{x} 
-are marked if their scaled outlyingness is larger than a prescribed cut-off value
+are marked if their scaled outlyingness is larger than a prescribed cutoff value
 from the chi-square distribution. For more details see the respective 
-outlyingness routines
+outlyingness routines.
 
 It is possible that at certain time points a part of the algorithm can not be 
 executed due to e.g. exact fits. In that case the weight of that particular time
@@ -111,15 +111,17 @@ indices of the time points where problems occured.
                         detected.}
 }
 \references{
-Hubert M., Rousseeuw P.J., Segaert P. (2015). Multivariate functional outlier detection.
-\emph{Statistical Methods and Applications,} \bold{24}(2), 177--202.
+Hubert M., Rousseeuw P.J., Segaert P. (2015). Multivariate functional outlier detection (with rejoinder).
+\emph{Statistical Methods and Applications,} \bold{24}, 177--202.
 
 Hubert M., Rousseeuw P.J., Segaert P. (2017). Multivariate and functional classification using depth and distance. \emph{Advances in Data Analysis and Classification}, \bold{11}, 445--466.
 
 }
-\seealso{\code{\link{bagdistance}}, \code{\link{outlyingness}}, \code{\link{adjOutl}}}
+\seealso{
+\code{\link{bagdistance}}, \code{\link{outlyingness}}, \code{\link{adjOutl}}, \code{\link{dirOutl}}, \code{\link{fom}}
+}
+
 \examples{
-# We will illustrate the function using a univariate functional sample.
 data(octane)
 Data <- octane
 
@@ -129,14 +131,14 @@ Data <- octane
 Result <- fOutl(x = Data, type = "fAO", diagnostic = TRUE)
 matplot(Data[,,1], type = "l", col = "black", lty = 1)
 for (i in 1:dim(Data)[2]) {
-  if(sum(Result$locOutlZ) > 0) {
+  if(sum(Result$locOutlZ[i, ]) > 0) {
     obsData <- matrix(Data[,i,1], nrow = 1)
     obsData[!Result$locOutlZ[i,]] <- NA
     obsData <- rbind(obsData, obsData)
     matpoints(t(obsData), col = "red", pch = 15)
   }
 }
-# For more advance outlier detection techniques, see the 
+# For more advanced outlier detection techniques, see the 
 # fom routine.
 }
 \author{P. Segaert}

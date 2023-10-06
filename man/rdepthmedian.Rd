@@ -2,8 +2,8 @@
 \alias{rdepthmedian}
 \title{Hyperplane of maximal regression depth}
 \description{
- Computes the deepest regression, i.e. the hyperplane with maximal
- regression depth given a regression dataset with \eqn{p} explanatory variables. The computation is exact for simple regression, and approximate otherwise.
+Computes the deepest regression, i.e. the hyperplane with maximal
+regression depth given a regression dataset with \eqn{p} explanatory variables. The computation is exact for simple regression, and approximate otherwise.
 }
 \usage{
 rdepthmedian(x, maxit = NULL)
@@ -28,7 +28,7 @@ When \eqn{p > 1}, the approximate MEDSWEEP algorithm is applied (Van Aelst et al
  A  list with components: \cr
 	\item{deepest}{A \eqn{(p+1)} vector containing the estimates of the deepest regression fit. The last \eqn{p} values are the slopes, the first value corresponds to the intercept.}
   \item{depth}{The depth of the deepest regression hyperplane.}
-  \item{ndir}{ The number of performed iterations used in the medsweep algorithm. }
+  \item{niter}{ The number of performed iterations used in the medsweep algorithm. }
   \item{dimension}{When the data \code{x} are lying in a lower dimensional subspace, the dimension of this subspace.}
 	\item{hyperplane}{When the data \code{x} are lying in a lower dimensional subspace, a direction orthogonal to this subspace.}
 
@@ -46,10 +46,10 @@ Van Aelst S., Rousseeuw P.J., Hubert M., Struyf A. (2002). The deepest regressio
 \examples{
 # Illustrate the concept of deepest regression line in the case of simple 
 # linear regression. 
-data("stars")
-plot(stars)
+data(stars)
+plot(stars, pch=16)
 result <- rdepthmedian(x = stars)
-abline(result$deepest)
+abline(result$deepest, col="blue", lwd=2)
 
 x <- matrix(rnorm(3000), ncol = 3) + 10
 rdepthmedian(x = x)

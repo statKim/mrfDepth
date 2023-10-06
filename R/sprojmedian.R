@@ -57,21 +57,14 @@ sprojmedian <- function(x, sprojection.depths = NULL, options = NULL) {
 
 findCenterSProj <- function(x, sprojection.depths) {
   p <- ncol(x)
-  center <- vector("list", 2)
+  center <- vector("list", 1)
 
-  #MaxDepth
+  # MaxDepth
   max.depth <- max(sprojection.depths)
   ind.max.depths <- which(sprojection.depths == max.depth)
   center[[1]] <- colMeans(matrix(x[ind.max.depths, ], ncol = p))
   center[[1]] <- matrix(center[[1]], ncol = p)
   names(center)[1] <- "max"
-
-  #Gravity
-  cut.off <- median(sprojection.depths)
-  ind.grav.depths <- which(sprojection.depths >= cut.off)
-  center[[2]] <- colMeans(matrix(x[ind.grav.depths, ], ncol = p))
-  center[[2]] <- matrix(center[[2]], ncol = p)
-  names(center)[2] <- "gravity"
 
   return(center)
 }

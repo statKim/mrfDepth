@@ -149,23 +149,25 @@ distSpace <- function(trainingData,
   }
 
   # Check type
-  Indtype <- match(type, c("bagdistance", "outlyingness", "adjOutl",
-                           "fbd", "fSDO", "fAO"))[1]
+  Indtype <- match(type, c("bagdistance", "outlyingness", "adjOutl", "dirOutl",
+                           "fbd", "fSDO", "fAO", "fDO"))[1]
   if (is.na(Indtype)) {
     stop(paste("The input argument type should be one of bagdistance",
-               "outlyingness or adjOutl for multivariate data and one",
-               "of fbd, fSDO or fAO for functional data")
-         )
+               "outlyingness, adjOutl or dirOutl for multivariate data and one",
+               "of fbd, fSDO, fAO or fDO for functional data"))
   }
-  if (dataType == "multivariate" & Indtype > 3) {
+  if (dataType == "multivariate" & Indtype > 4) {
     stop(paste("The input argument type should be one of bagdistance",
-               "outlyingness or adjOutl for multivariate data.")
-         )
+               "outlyingness, adjOutl or dirOutl for multivariate data."))
   }
-  if (dataType == "functional" & Indtype < 4) {
+  if (dataType == "functional" & Indtype == 1) {
+    # if functional data, switch the default to fbd
+    type    <- "fbd"
+    Indtype <- 5
+  }
+  if (dataType == "functional" & Indtype < 5) {
     stop(paste("The input argument type should be one of fbd,", 
-               "fSDO or fAO for functional data")
-         )
+               "fSDO, fAO or fDO for functional data."))
   }
   
   # Check options
@@ -193,8 +195,6 @@ distSpace <- function(trainingData,
   }
 
   #######################################################################
-  #######################################################################
-  
   
   # Merge all data into one structure
   if (dataType == "multivariate") {
@@ -263,6 +263,18 @@ distSpace <- function(trainingData,
                               options = options)
         if (is.null(tempResult$outlyingnessZ)) {
           warning(paste("Adjusted outlyingness to training group", i,
+                        "could not be computed.")
+          )
+        } else {
+          resultDistance[, i] <- tempResult$outlyingnessZ
+        }
+      }
+      if (type == "dirOutl") {
+        tempResult <- dirOutl(x = trainingData[[i]],
+                              z = dataToCalcDist,
+                              options = options)
+        if (is.null(tempResult$outlyingnessZ)) {
+          warning(paste("Directional outlyingness to training group", i,
                         "could not be computed.")
           )
         } else {

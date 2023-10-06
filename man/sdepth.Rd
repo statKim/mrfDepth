@@ -32,10 +32,10 @@ A list with components:
  \code{\link{mrainbowplot}}
 }
 \references{
-Liu, R. (1990). On a notion of data depth based on random simplices. 
+Liu R. (1990). On a notion of data depth based on random simplices. 
 \emph{The Annals of Statistics,} \bold{18}, 405--414.
 
-Rousseuw, P.J., Ruts, I. (1996). AS 307: Bivariate location depth. \emph{Applied Statistics, Journal of the Royal Statistical Society: Series C },  \bold{45}, 516--526.
+Rousseeuw P.J., Ruts I. (1996). AS 307: Bivariate location depth. \emph{Applied Statistics,} \bold{45}, 516--526.
 }
 
 \author{P. Segaert, based on Fortran code by  P.J. Rousseeuw, I. Ruts and A. Struyf.}

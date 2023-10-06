@@ -23,7 +23,7 @@ back the dimension of the subspace together with a direction describing a
 hyperplane containing this subspace.
 
 For bivariate data the exact algorithm of Rousseeuw and Ruts (1998) is applied. 
-When the data are not in general position (i.e. when there is a line containing more than two observations) dithering is performed by adding random Gaussian noise to the data. In this the ouput argument \code{dithered} will containg a flag. 
+When the data are not in general position (i.e. when there is a line containing more than two observations) dithering is performed by adding random Gaussian noise to the data. In this case the output argument \code{dithered} will contain a flag. 
 
 When \eqn{p > 2} the approximate algorithm of Struyf and Rousseeuw (2000) is applied. It is an iterative procedure based on projections. Their number can be chosen by the input parameter \code{maxdir}.
 
@@ -56,10 +56,10 @@ Struyf A., Rousseeuw P.J. (2000). High-dimensional computation of the deepest lo
 \author{P. Segaert based on Fortran code by P.J. Rousseeuw, I. Ruts and A. Struyf}
 
 \examples{
-# Compute a location estimate of a simple 
-# two-dimensional dataset.
-
+# Compute a location estimate of a two-dimensional dataset.
 data(cardata90)
-Result <- hdepthmedian(x=cardata90)
+Result <- hdepthmedian(x = cardata90)
+plot(cardata90, pch = 16)
+points(Result$median, col = "red", pch = 18, cex = 1.5)
 }
 \keyword{multivariate}

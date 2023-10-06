@@ -41,7 +41,7 @@ rdepthmedian <- function(x, maxit=NULL) {
             standard deviation. Check the data matrix x.")
     returned.result <- list(deepest = NULL,
                             depth = NULL,
-                            ndir = NULL,
+                            niter = NULL,
                             dimension = sum(column.sd > 1e-14),
                             hyperplane = as.numeric(column.sd <= 1e-14)
                             )
@@ -54,7 +54,7 @@ rdepthmedian <- function(x, maxit=NULL) {
             data matrix x could not be computed.")
     returned.result <- list(deepest = NULL,
                             depth = NULL,
-                            ndir = NULL,
+                            niter = NULL,
                             dimension = NULL,
                             hyperplane = NULL
                             )
@@ -65,7 +65,7 @@ rdepthmedian <- function(x, maxit=NULL) {
     warning("An exact fit was found. Check output for more details.")
     returned.result <- list(deepest = NULL,
                             depth = NULL,
-                            ndir = NULL,
+                            niter = NULL,
                             dimension = sum(w1$d > tol),
                             hyperplane = w1$v[, which(w1$d == min(w1$d))[1]]
                             )
@@ -135,7 +135,7 @@ rdepthmedian <- function(x, maxit=NULL) {
 
     returned.result <- list(deepest = deepest.fit,
                             depth = max.depth / n1,
-                            ndir = NULL,
+                            niter = NULL,
                             dimension = NULL,
                             hyperplane = NULL
                             )
@@ -160,7 +160,7 @@ rdepthmedian <- function(x, maxit=NULL) {
 
     returned.result <- list(deepest = deepest.fit,
                             depth = result[[7]] / n1,
-                            ndir = result[[6]],
+                            niter = result[[6]],
                             dimension = NULL,
                             hyperplane = NULL
                             )

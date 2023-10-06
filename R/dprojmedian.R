@@ -57,7 +57,7 @@ dprojmedian <- function(x, dprojection.depths = NULL, options = NULL) {
 
 findCenterDProj <- function(x, dprojection.depths) {
   p <- ncol(x)
-  center <- vector("list", 2)
+  center <- vector("list", 1)
 
   #MaxDepth
   max.depth <- max(dprojection.depths)
@@ -65,13 +65,6 @@ findCenterDProj <- function(x, dprojection.depths) {
   center[[1]] <- colMeans(matrix(x[ind.max.depths, ], ncol = p))
   center[[1]] <- matrix(center[[1]], ncol = p)
   names(center)[1] <- "max"
-
-  #Gravity
-  cut.off <- median(dprojection.depths)
-  ind.grav.depths <- which(dprojection.depths >= cut.off)
-  center[[2]] <- colMeans(matrix(x[ind.grav.depths, ], ncol = p))
-  center[[2]] <- matrix(center[[2]], ncol = p)
-  names(center)[2] <- "gravity"
 
   return(center)
 }

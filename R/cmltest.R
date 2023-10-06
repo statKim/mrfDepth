@@ -22,6 +22,11 @@ cmltest <- function(x, z){
   if (p1 != 2) {
     stop("Only applicable to bivariate data.")
   }
+  
+  if (anyDuplicated(x)) {
+    stop("Ties in x are not allowed.")
+  }
+  
   # Check the z data.
   z <- data.matrix(z)
   if (!is.numeric(z)) {

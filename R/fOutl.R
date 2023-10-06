@@ -12,9 +12,9 @@ fOutl <- function(x,
     stop("Input argument x is required.")
   }
 
-  #Check x
+  # Check x
   if (!is.array(x)) {
-    stop("x must be a three dimensional array.")
+    stop("x must be an array.")
   }
   if ((length(dim(x)) != 3) && (length(dim(x)) != 4)) {
     stop("x must be a three or four dimensional array.")
@@ -28,7 +28,7 @@ fOutl <- function(x,
   }
   
   if (sum(is.nan(x)) != 0) {
-    stop("x contains missing cases.")
+    stop("x contains missing cases which is not allowed.")
   }
   
   t1 <- dim(x)[1]
@@ -61,7 +61,7 @@ fOutl <- function(x,
   n2 <- dim(z)[2]
   p2 <- dim(z)[3]
 
-  #Check dimension match between x and z
+  # Check dimension match between x and z
   if (p1 != p2) {
     stop("The p dimension of x and z must match.")
   }
@@ -69,16 +69,16 @@ fOutl <- function(x,
     stop("The t dimension of x and z must match.")
   }
 
-  #Check type
+  # Check type
   Indtype <- match(type, c("fSDO", "fAO",
                            "fDO", "fbd"))[1]
   if (is.na(Indtype)) {
     stop("type should be one of fSDO, fAO, fDO or fbd.")
   }
 
-  #Check alpha
+  # Check alpha
   if (!is.numeric(alpha)) {
-    stop("alpha must be numeric")
+    stop("alpha must be numeric.")
   }
   else if (is.vector(alpha)) {
    if (alpha != 0) {
@@ -96,7 +96,7 @@ fOutl <- function(x,
     stop("alpha must be either a number or a (1xt)-row matrix.")
   }
 
-  #Check time
+  # Check time
   if (is.null(time)) {
     time <- 1:t1
   }
@@ -104,7 +104,7 @@ fOutl <- function(x,
     stop("time should be a numeric vector.")
   }
   if (length(time) != t1) {
-    stop("time should contain t elements")
+    stop("time should contain t elements.")
   }
   if (length(time) != 1) {
     dTime <- diff(c(time[1], time, time[t1]), lag = 2)
@@ -116,17 +116,17 @@ fOutl <- function(x,
     dTime <- 1
   }
 
-  #check diagnostic
+  # check diagnostic
   if (!is.logical(diagnostic)) {
-    stop("diagnostic should be a logical")
+    stop("diagnostic should be a logical.")
   }
 
-  #check depthOptions
+  # check depthOptions
   if (is.null(distOptions)) {
     distOptions <- list()
   }
   if (!is.list(distOptions)) {
-    stop("distOptions must be a list")
+    stop("distOptions must be a list.")
   }
   
   distTimeX <- matrix(NA, nrow = n1, ncol = t1)
@@ -146,7 +146,7 @@ fOutl <- function(x,
   for (j in 1:t1) {
     exactfit <- 0
 
-    #R has standard dimension dropping, we need to be carefull
+    # R has standard dimension dropping, we need to be careful
     if (p1 == 1)  {
       xTimePoint <- matrix(x[j,,1])
       zTimePoint <- matrix(z[j,,1])
@@ -156,7 +156,7 @@ fOutl <- function(x,
       zTimePoint <- z[j,,,drop = TRUE]
     }
 
-    #Find cross-sectional distance
+    # Find cross-sectional distance
     if (type == "fSDO") {
       temp <- outlyingness(x = xTimePoint,
                            z = zTimePoint,
@@ -215,7 +215,7 @@ fOutl <- function(x,
       }
     }
 
-    #Check if exact fit needs handling later on
+    # Check if exact fit needs handling later on
     if (exactfit) {
       weights[j]     <- 0
       warningFlagFit <- 1
@@ -250,11 +250,11 @@ fOutl <- function(x,
   Result$distType <- type
   class(Result) <- c("mrfDepth", "fOutl")
 
-  #Handle all warnings
+  # Handle all warnings
   if (warningFlagFit == 1) {
     warning(paste("Exact fits were detected for certain time points.",
                   "Their weights will be set to zero.",
-                  "Check the returned results"))
+                  "Check the returned results."))
     Result$IndFlagExactFit <- warningIndFit
   }
 

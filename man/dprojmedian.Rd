@@ -1,6 +1,6 @@
 \name{dprojmedian}
 \alias{dprojmedian}
-\title{Location estimates based on directional projection depth.}
+\title{Location estimates based on directional projection depth}
 \description{
 Computes a directional projection depth based location estimate of a 
 \eqn{p}-dimensional dataset \code{x}.
@@ -12,17 +12,14 @@ dprojmedian(x, dprojection.depths = NULL, options = NULL)
     \item{x}{An \eqn{n} by \eqn{p} data matrix with observations
              in the rows and variables in the columns.}
   \item{dprojection.depths}{Vector containing the directional projection
-                  depths of the points in \code{x}.}
-  \item{options}{ A list of options to pass to the \code{dprojdepth} routine.
+                  depth of the observations in \code{x}.}
+  \item{options}{A list of options to pass to the \code{dprojdepth} routine.
                   See \code{dprojdepth} for more details. }
 
 }
 \details{
- The algorithm depends on the function \code{dprojdepth} to calculate the
- directional projection depths of the dataset \code{x}. If the 
- directional projection depths of the points \eqn{x_i} have already been
- calculated they can be passed as an optional argument to save computation time.
- If not, directional projection depths will be calculated and the user 
+ The algorithm depends on the function \code{dprojdepth} to compute the
+ directional projection depth of the observations in \code{x}. If these depth values  have already been computed they can be passed as an optional argument to save computing time. If not, directional projection depth values will be computed and the user 
  can pass a list with options to the \code{dprojdepth} function.
 
  It is first checked whether the data lie in a subspace of dimension smaller 
@@ -30,42 +27,34 @@ dprojmedian(x, dprojection.depths = NULL, options = NULL)
  subspace and a direction which is orthogonal to it.
 }
 \value{
-  A list with components: \cr
-    \item{max}{The point of \code{x} with maximal directional projection 
+  A list with component: \cr
+    \item{max}{The observation of \code{x} with maximal directional projection 
                depth. If multiple points have maximum depth, their center
-               of gravity is returned}
-    \item{gravity}{The center of gravity for the 50 percent points with
-                   highest directional projection depth. Also called
-                   the center of gravity of the bag.}
-}
+               of gravity is returned.}
+   }
 \seealso{
   \code{\link{dirOutl}}, \code{\link{dprojdepth}}, \code{\link{adjOutl}}, \code{\link{outlyingness}}
 }
 \references{
-Rousseeuw, P.J., Raymaekers, J., Hubert, M., (2018), A Measure of Directional Outlyingness with Applications to Image Data and Video. \emph{Journal of Computational and Graphical Statistics}, \bold{27}, 345--359.\\
+Rousseeuw P.J., Raymaekers J., Hubert M. (2018). A measure of directional outlyingness with applications to image data and video. \emph{Journal of Computational and Graphical Statistics}, \bold{27}, 345--359.
 }
 \author{J. Raymaekers}
 \examples{
-# Compute a location estimate of a simple two-dimensional dataset.
+# Compute a location estimate of a two-dimensional dataset.
 data(bloodfat)
-
 result <- dprojmedian(x = bloodfat)
-plot(bloodfat)
-points(result$max, col = "red", pch = 15)
-points(result$gravity, col = "blue", pch = 16)
+plot(bloodfat, pch = 16)
+points(result$max, col = "red", pch = 18, cex = 1.5)
 
-
-# Options for the underlying sprojdepth routine may be passed 
+# Options for the underlying dprojdepth routine may be passed 
 # using the options argument. 
-result <- dprojmedian(x = bloodfat,options = list(type = "Affine",ndir = 10))
-plot(bloodfat)
-points(result$max, col = "red", pch = 15)
-points(result$gravity, col = "blue", pch = 16)
+result <- dprojmedian(x = bloodfat, options = list(type = "Rotation", ndir = 100))
+plot(bloodfat, pch = 16)
+points(result$max, col = "red", pch = 18, cex = 1.5)
 
-# One may also calculate the depths of the points in the data
-# separately. This avoids having to recompute the depths when these
-# are previously calculated. 
+# One may also compute the depth values of the observations in the data
+# separately. This avoids having to recompute them when conmputing the median. 
 depth.result <- dprojdepth(x = bloodfat)
-result <- dprojmedian(x = bloodfat,dprojection.depths = depth.result$depthX)
+result <- dprojmedian(x = bloodfat, dprojection.depths = depth.result$depthX)
 }
 \keyword{multivariate}

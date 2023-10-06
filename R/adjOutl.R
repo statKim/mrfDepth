@@ -38,7 +38,7 @@ adjOutl <- function(x, z = NULL, options = list()){
     options <- list()
   }
   if (!is.list(options)) {
-    stop("options must be a list")
+    stop("options must be a list.")
   }
   if ("type" %in% names(options)) {
     type <- options[["type"]]
@@ -225,7 +225,6 @@ adjOutl <- function(x, z = NULL, options = list()){
 
   LAO <- log(0.1 + adj.outlyingness[1:n1])
   cutoff <- exp(median(LAO) + mad(LAO) * qnorm(0.995)) - 0.1
-  
   
   flag.X <- adj.outlyingness[1:n1] <= cutoff
   flag.Z <- adj.outlyingness[(n1 + 1):(n1 + n2)] <= cutoff
