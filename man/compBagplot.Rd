@@ -111,7 +111,7 @@ Hubert M., Rousseeuw P.J., Segaert, P. (2015). Rejoinder to 'Multivariate functi
 
 \examples{
 data(bloodfat)
-Result <- compBagplot(bloodfat)
+\dontrun{Result <- compBagplot(bloodfat)
 bagplot(Result)
 
 # The sizesubset argument may be used to control the
@@ -121,7 +121,7 @@ bagplot(Result)
 system.time(Result1 <- compBagplot(bloodfat))
 system.time(Result2 <- compBagplot(bloodfat, sizesubset = 100))
 bagplot(Result1)
-bagplot(Result2)
+bagplot(Result2)}
 
 # When using any of the projection depth functions,
 # a list of options may be passed down to the corresponding

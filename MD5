@@ -1,4 +1,4 @@
-44aa66abb58108106468ffef3c403559 *DESCRIPTION
+6eacb5672a1f7742448d19f6d1b5f701 *DESCRIPTION
 fce21212b3b19876fd8ca1e37d7396a9 *NAMESPACE
 153bc26d3abb094974486633d69f1c3d *R/Misc.R
 c5581ce0cca9bdbc1462982b7cf77e4d *R/adjOutl.R
@@ -47,13 +47,13 @@ f005619f018fbc42040d96f72f4ae424 *data/wine.rdata
 c222ab57ed001fd3b29224a38fd83c67 *inst/NEWS.Rd
 b2789f7ff6ae1ed039a35e677b6bb1ef *man/adjOutl.Rd
 308b4835bdf69112b350e8b129fa35c8 *man/bagdistance.Rd
-f2bafd8dca9948951e9b80f3e5be1cfe *man/bagplot.Rd
+aba6ca68bbe6fd59726dd8b0cc826d91 *man/bagplot.Rd
 be1271bdfc9ac7e149a930e046f8a8ad *man/bloodfat.Rd
 376b3cc9176c592a715222cea809dd2e *man/cardata90.Rd
 e72f7d7086ef4a8fca8cca8ae0ef1e1a *man/characterA.Rd
 c6ee54d22bf1cf0210cc8fa2dcdc218f *man/characterI.Rd
 f8bdc17781a8605ac78cba27b56c2229 *man/cmltest.Rd
-1b171e0343ad6dc13e0d521c7a92161a *man/compBagplot.Rd
+ea4b09d8855accb9d7ffbf6558ae7464 *man/compBagplot.Rd
 d542252ba0efa2b81aab228bee9fa47f *man/depthContour.Rd
 616ba02a9937b93aca806619393e1744 *man/dirOutl.Rd
 aae570c7a33fe8ae8f2139fb3e0f26ca *man/distSpace.Rd
@@ -96,8 +96,8 @@ fc607976fb93d719f368a23fc74c4080 *src/HalfSpaceDepthDeepestLoc.f
 719dacbf047f4fd8440f9fe774c9da1d *src/HalfSpaceDepthND.f
 2280a178e36199589eccd31424d23d6b *src/HalfspaceDepth3D.f
 c85e7034d8c4ac8338890bcc686231ab *src/LinAlg.f
-f45cee86e189f3980256554b4b08c77a *src/Makevars
-0d1f390426bd8681bebcb11f3bca2222 *src/Makevars.win
+6e0aba9d24e9c1c99c816076d6ed0a81 *src/Makevars
+6e0aba9d24e9c1c99c816076d6ed0a81 *src/Makevars.win
 741e159a6122fe6dee78615b4cef9e84 *src/Outlyingness.cpp
 5381c2de7891cf79ea5857edf2e531e1 *src/Random.f
 935bf812575cd7af660ab76d71bfd01b *src/RegresDepth3D.f

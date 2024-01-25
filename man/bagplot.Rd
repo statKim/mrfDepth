@@ -49,16 +49,16 @@ data(bloodfat)
 # The bagplot can be plotted based on halfspace depth, projection depth,
 # skewness-adjusted projection depth or directional projection depth.
 # Note that projection depth is not appropiate for skewed data.
-bagplot(compBagplot(bloodfat))
+\dontrun{bagplot(compBagplot(bloodfat))}
 bagplot(compBagplot(bloodfat, type = "projdepth"))
 bagplot(compBagplot(bloodfat, type = "dprojdepth"))
 
 # The main features of the bagplot can easily be adjusted.
-result <- compBagplot(bloodfat)
+\dontrun{result <- compBagplot(bloodfat)
 bagplot(result, databag = FALSE, dataloop = FALSE)
-bagplot(result, colorbag = rgb(0.2, 0.2, 0.2), colorloop = "lightgreen")
+bagplot(result, colorbag = rgb(0.2, 0.2, 0.2), colorloop = "lightgreen")}
 
-data(cardata90)
+\dontrun{data(cardata90)
 result <- compBagplot(cardata90)
 bagplot(result)
 
@@ -74,6 +74,7 @@ plot
 # edited using standard ggplot2 commands.
 library("ggplot2")
 plot + ylab("Engine displacement") + xlab("Weight in pounds")
+}
 }
 
 \keyword{Graphical}
