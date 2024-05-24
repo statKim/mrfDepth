@@ -326,7 +326,7 @@ C  Computation of NUMH for halfspace depth.
    50 CONTINUE
 C  Adjust for the number NZ of data points equal to theta=(U,V):
    60 NUMS=NUMS + K(NZ,1)*K(NN,2)+K(NZ,2)*K(NN,1) + K(NZ,3)
-      IF(N.GE.3) SDEP = (NUMS+0.0)/(K(N,3)+0.0)
+      IF(N.GE.3) SDEP = (DBLE(NUMS)+0.0)/(DBLE(K(N,3))+0.0)
       NUMH=NUMH+NZ
       HDEP=NUMH
 C     End the subroutine

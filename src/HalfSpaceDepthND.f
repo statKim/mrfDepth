@@ -163,7 +163,7 @@ C     Initialize NDEP
       ENDIF
       HDEP=(NDEP+0.D0)/(N+0.D0)
       RETURN
- 300  END
+      END
 
 
 
@@ -304,12 +304,12 @@ C  Initialize halfspace depth and random seed.
       DO 100 NRAN=1,NDIR
 C  Draw a random sample of size np.  
          CALL UNIRAN(1,ISEED,RAN)
-         I=N*RAN(1)+1.
+         I=N*INT(RAN(1),4)+1.
          IF(I.GT.N)I=N
          JSAMP(1)=I
          NSAMP=1
  20      CALL UNIRAN(1,ISEED,RAN)
-         L=N*RAN(1)+1.
+         L=N*INT(RAN(1),4)+1.
          IF(L.GT.N)L=N
          DO 30 J=1,NSAMP
             IF(L.EQ.JSAMP(J)) GOTO 20

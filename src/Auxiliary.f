@@ -133,34 +133,34 @@ C Actual Routine
       IV=IV1
       NRANK(D1)=IV2
       NRANK(D2)=IV
-	 IF (((IV1.EQ.K).AND.(IV2.EQ.(K+1)))
+      IF (((IV1.EQ.K).AND.(IV2.EQ.(K+1)))
      +      .OR.((IV2.EQ.K).AND.(IV1.EQ.(K+1)))
      +      .OR.((IV1.EQ.(N-K)).AND.(IV2.EQ.(N-K+1))) 
      +      .OR.((IV2.EQ.(N-K)).AND.(IV1.EQ.(N-K+1)))) THEN
-	    IF (ANGLE(L).LT.PI2) THEN
-	       DUM=ANGLE(L)+PI2
+        IF (ANGLE(L).LT.PI2) THEN
+           DUM=ANGLE(L)+PI2
             ELSE
-	       DUM=ANGLE(L)-PI2
+           DUM=ANGLE(L)-PI2
             ENDIF
             IF (((IV1.EQ.K).AND.(IV2.EQ.(K+1)))
      +         .OR.((IV2.EQ.K).AND.(IV1.EQ.(K+1)))) THEN
-	       IF (DUM.LE.PI2) THEN
-		  ALPHA(KOUNT)=ANGLE(L)+PI
+           IF (DUM.LE.PI2) THEN
+          ALPHA(KOUNT)=ANGLE(L)+PI
                ELSE
-		  ALPHA(KOUNT)=ANGLE(L)
+          ALPHA(KOUNT)=ANGLE(L)
                ENDIF
             ENDIF
-	    IF (((IV1.EQ.(N-K)).AND.(IV2.EQ.(N-K+1)))
+        IF (((IV1.EQ.(N-K)).AND.(IV2.EQ.(N-K+1)))
      +        .OR.((IV2.EQ.(N-K)).AND.(IV1.EQ.(N-K+1)))) THEN
-	       IF (DUM.LE.PI2) THEN
-		  ALPHA(KOUNT)=ANGLE(L)
+           IF (DUM.LE.PI2) THEN
+          ALPHA(KOUNT)=ANGLE(L)
                ELSE
-		  ALPHA(KOUNT)=ANGLE(L)+PI
+          ALPHA(KOUNT)=ANGLE(L)+PI
                ENDIF
             ENDIF
-	    KAND1(KOUNT)=IND1(L)
-	    KAND2(KOUNT)=IND2(L)
-	    D(KOUNT)=DSIN(ALPHA(KOUNT))*X(IND1(L))
+        KAND1(KOUNT)=IND1(L)
+        KAND2(KOUNT)=IND2(L)
+        D(KOUNT)=DSIN(ALPHA(KOUNT))*X(IND1(L))
      +                -DCOS(ALPHA(KOUNT))*Y(IND1(L))
             KOUNT=KOUNT+1
          ENDIF

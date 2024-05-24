@@ -107,7 +107,7 @@ C
 
 C Check whether dithering is needed
 C Sort the data and compute the angles
-10    CALL checkData2D(X,Y,N,fac,NCIRQ,MCIRQ,ANGLE,
+      CALL checkData2D(X,Y,N,fac,NCIRQ,MCIRQ,ANGLE,
      +JLV,JRV,IND1,IND2,dithered)
 
 C The cases n<=3 are simple
@@ -326,6 +326,9 @@ C     CONSTANTS
 C     Define for use in the further algorithm
       M=N*(N-1)/2
       MAXNUM=int(4*N*SQRT(REAL(N))+1)
+      J=0
+	    xcord1 = 0.0D0
+	    ycord1 = 0.0D0
 CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 C Actual Routine
 C
@@ -374,7 +377,6 @@ C angle between 0 and angle(1)
       else
          jflag=m
       endif
-      J=0
 C
 C  In case the first switch didn't occur between zero and ANGLE(1),
 C  look for it between the following angles.
@@ -671,7 +673,7 @@ C
       IW2=IW2+1
       IF (IW2.EQ.(NUM+1)) IW2=1
       GOTO 120
-200   CONTINUE
+      CONTINUE
 170   CONTINUE
       if (ndk.eq.0) then
           empty = 1

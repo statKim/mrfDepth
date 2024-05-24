@@ -119,7 +119,7 @@ CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
       INTEGER nsa,ngen,ind,jdir,nmin,nmax,nsin,p,ji,nsamp
       INTEGER ierr,indm,nid,nidalt,ndstep,ndold,inalt
       double precision utj,dmax,utdpst
-
+      lj = 0
 cc  initialize the random seed.
       ISEED=256
 cc  handle special case where n is equal to 1.
@@ -685,7 +685,8 @@ CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
       integer N
       double precision aw(n),u,eps
       integer indge,indle,indl,indg,j,imax,imin
-
+      indl = 0
+      
       if (u.lt.(aw(1)-eps)) then
          indge=n
          indle=0

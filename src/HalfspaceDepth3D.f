@@ -151,7 +151,6 @@ C INPUT
       DOUBLE PRECISION UU,VV,WW
 
       DOUBLE PRECISION xmean,ymean,zmean,xdev,ydev,zdev
-
 C OUTPUT
       INTEGER NDEP,NDIM
 C WORKSPACE

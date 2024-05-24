@@ -111,17 +111,17 @@ Hubert M., Rousseeuw P.J., Segaert, P. (2015). Rejoinder to 'Multivariate functi
 
 \examples{
 data(bloodfat)
-\dontrun{Result <- compBagplot(bloodfat)
-bagplot(Result)
+# Result <- compBagplot(bloodfat)
+# bagplot(Result)
 
 # The sizesubset argument may be used to control the
 # computation time when computing the bagplot based on
 # halfspace depth. However results may be unreliable when
 # choosing a small subset for the main computations.
-system.time(Result1 <- compBagplot(bloodfat))
-system.time(Result2 <- compBagplot(bloodfat, sizesubset = 100))
-bagplot(Result1)
-bagplot(Result2)}
+# system.time(Result1 <- compBagplot(bloodfat))
+# system.time(Result2 <- compBagplot(bloodfat, sizesubset = 100))
+# bagplot(Result1)
+# bagplot(Result2)
 
 # When using any of the projection depth functions,
 # a list of options may be passed down to the corresponding

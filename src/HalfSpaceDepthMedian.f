@@ -18,11 +18,10 @@ C
       DOUBLE PRECISION X(N),Y(N),WX(N),WY(N)
       DOUBLE PRECISION XX(N),YY(N)
       DOUBLE PRECISION xmean,ymean,xdev,ydev
-      DOUBLE PRECISION X2(N),Y2(N)
       DOUBLE PRECISION ANGLE(N*(N-1)/2)
       DOUBLE PRECISION PI,PI2,EPS,xsum,ysum
       DOUBLE PRECISION XCont(N*(N-1)/2), YCont(N*(N-1)/2)
-      DOUBLE PRECISION sum,tukmed(2),fac,wx1(N),wy1(N),rand(2)
+      DOUBLE PRECISION sum,tukmed(2),fac,rand(2)
       INTEGER HDEP,KSTAR
       double precision dpf(N),SDEP
       INTEGER HDEP1

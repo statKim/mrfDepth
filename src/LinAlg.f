@@ -31,6 +31,7 @@ C     |________________________________________________________|
 C
       DOUBLE PRECISION V(LV,1),S,T
       INTEGER W(1),I,J,K,L,M,N,P
+      K = 0
       IF ( N .EQ. 1 ) GOTO 110
       L = 0
       M = 1
@@ -499,16 +500,17 @@ c
          d(k) = z(k,i) / h
   330    continue
 c
-         do 360 j = 1, l
+         do j = 1, l
             g = 0.0d0
 c
             do 340 k = 1, l
             g = g + z(k,i) * z(k,j)
   340       continue
 c
-            do 360 k = 1, l
+            do k = 1, l
                z(k,j) = z(k,j) - g * d(k)
-  360    continue
+            end do
+         end do
 c
   380    do 400 k = 1, l
          z(k,i) = 0.0d0
@@ -576,18 +578,19 @@ CC    ------------------------------------------------------------------
       SUBROUTINE EQUAT(AM,MAXP,MAXP1,HVEC,MAXPP1,NA,NB,NERR)
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
       DIMENSION AM(MAXP,MAXP1)
-      DOUBLE PRECISION HVEC(MAXPP1),TURN,SWAP,DETER
+      DOUBLE PRECISION HVEC(MAXPP1),TURN,SWAP,DETER,LDEL
       JDM=MAXP
       DETER=1.0D0
       N=NA
       JMAT=N+NB
       JNK=0
-      DO 10 J=1,JMAT
+      DO J=1,JMAT
       JNK=(J-1)*MAXP
-      DO 10 NC=1,MAXP
+      DO NC=1,MAXP
       JNK=JNK+1
       HVEC(JNK)=AM(NC,J)
- 10   CONTINUE
+      END DO
+      END DO
       NZNDE=N-1
       LCLPL=-JDM
       DO 120 JHFD=1,N
@@ -601,7 +604,7 @@ CC    ------------------------------------------------------------------
       END IF
  40   CONTINUE
       IF(DABS(TURN).LE.1D-8) GOTO 170
- 50   IF((LDEL-LCLPL)/=0) THEN
+      IF((LDEL-LCLPL)/=0) THEN
       DETER=-DETER
       LDEL=LDEL-JDM
       JNCB=LCLPL-JDM
@@ -609,8 +612,8 @@ CC    ------------------------------------------------------------------
       LDEL=LDEL+JDM
       JNCB=JNCB+JDM
       SWAP=HVEC(JNCB)
-      HVEC(JNCB)=HVEC(LDEL)
-      HVEC(LDEL)=SWAP
+      HVEC(JNCB)=HVEC(INT(LDEL))
+      HVEC(INT(LDEL))=SWAP
  70   CONTINUE
       DETER=DETER*TURN
       ENDIF
@@ -658,22 +661,24 @@ CC    ------------------------------------------------------------------
       JNC=-JDM
       JBEGX=NZNDE*JDM+1
       JENDX=JBEGX+NZNDE
-      DO 160 JNCB=NEQA,JMAT
+      DO JNCB=NEQA,JMAT
       JBEGX=JBEGX+JDM
       JENDX=JENDX+JDM
       JNC=JNC+JDM
       JNCD=JNC
-      DO 160 JNCC=JBEGX,JENDX
+      DO JNCC=JBEGX,JENDX
       JNCD=JNCD+1
       HVEC(JNCD)=HVEC(JNCC)
- 160  CONTINUE
+      END DO
+      END DO
       GOTO 180
  170  NERR=-1
  180  JNK=0
-      DO 190 J=1,JMAT
-      DO 190 NC=1,MAXP
+      DO J=1,JMAT
+      DO NC=1,MAXP
       JNK=JNK+1
       AM(NC,J)=HVEC(JNK)
- 190  CONTINUE
+      END DO
+      END DO
       RETURN
       END

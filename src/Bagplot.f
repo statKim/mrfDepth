@@ -365,7 +365,7 @@ C     All points collinear
 C
 C      The data are in general position.
 C
-37    if (notingp.eq.1) then
+      if (notingp.eq.1) then
       do 212 i=1,n
           numdep(i)=0
 212   continue
@@ -533,7 +533,7 @@ c
          tukmed(2)=ysum
          Chull(i,2)=ysum
          endif
-207      if (xdev.gt.eps) then
+      if (xdev.gt.eps) then
             xcord=tukmed(1)*xdev+xmean
          else
             xcord=tukmed(1)
@@ -957,7 +957,7 @@ C      No interpolation, too many points coincide.
 C
 C      Repeat some calculations for the whole data set.
 C
-1398      if (ntot.gt.nsub) then
+      if (ntot.gt.nsub) then
          n=ntot
          do 1399 i=1,n
          x(i)=zori(i,1)
@@ -1009,7 +1009,7 @@ C
 C
 C     Calculation of arrays px and py for B.
 C
-1431      jk=0
+      jk=0
       wx(kount+kount1+1)=wx(1)
       wy(kount+kount1+1)=wy(1)
       gamma(kount+kount1+1)=gamma(1)
