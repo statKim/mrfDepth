@@ -133,42 +133,42 @@ hdepth <- function(x, z = NULL, options = list()){
   #####
   # Check data for possible exact fit situations.
   tol <- 1e-7
-  scaled.x <- scale(x)
-  temp <- attributes(scaled.x)
-  column.sd <- temp[["scaled:scale"]]
-  if (sum(column.sd <= 1e-14) > 0) {
-    warning("One of the variables has zero standard deviation.
-            Check the data matrix x.")
-    returned.result <- list(depthX = NULL,
-                            depthZ = NULL,
-                            singularSubsets = NULL,
-                            dimension = sum(column.sd > 1e-14),
-                            hyperplane = as.numeric(column.sd <= 1e-14))
-    class(returned.result) <- c("mrfDepth", "hdepth")
-    return(returned.result)
-  }
-  w1 <- try(svd(scaled.x / sqrt(n1 - 1)), silent = TRUE)
-  if (!is.list(w1)) {
-    warning("The singular-value decomposition of the data matrix x
-            could not be computed.")
-    returned.result <- list(depthX = NULL,
-                            depthZ = NULL,
-                            singularSubsets = NULL,
-                            dimension = NULL,
-                            hyperplane = NULL)
-    class(returned.result) <- c("mrfDepth", "hdepth")
-    return(returned.result)
-  }
-  if (min(w1$d) < tol) {
-    warning("An exact fit was found. Check the output for more information.")
-    returned.result <- list(depthX = NULL,
-                            depthZ = NULL,
-                            singularSubsets = NULL,
-                            dimension = sum(w1$d > tol),
-                            hyperplane = w1$v[, which(w1$d == min(w1$d))[1]])
-    class(returned.result) <- c("mrfDepth", "hdepth")
-    return(returned.result)
-  }
+  # scaled.x <- scale(x)
+  # temp <- attributes(scaled.x)
+  # column.sd <- temp[["scaled:scale"]]
+  # if (sum(column.sd <= 1e-14) > 0) {
+  #   warning("One of the variables has zero standard deviation.
+  #           Check the data matrix x.")
+  #   returned.result <- list(depthX = NULL,
+  #                           depthZ = NULL,
+  #                           singularSubsets = NULL,
+  #                           dimension = sum(column.sd > 1e-14),
+  #                           hyperplane = as.numeric(column.sd <= 1e-14))
+  #   class(returned.result) <- c("mrfDepth", "hdepth")
+  #   return(returned.result)
+  # }
+  # w1 <- try(svd(scaled.x / sqrt(n1 - 1)), silent = TRUE)
+  # if (!is.list(w1)) {
+  #   warning("The singular-value decomposition of the data matrix x
+  #           could not be computed.")
+  #   returned.result <- list(depthX = NULL,
+  #                           depthZ = NULL,
+  #                           singularSubsets = NULL,
+  #                           dimension = NULL,
+  #                           hyperplane = NULL)
+  #   class(returned.result) <- c("mrfDepth", "hdepth")
+  #   return(returned.result)
+  # }
+  # if (min(w1$d) < tol) {
+  #   warning("An exact fit was found. Check the output for more information.")
+  #   returned.result <- list(depthX = NULL,
+  #                           depthZ = NULL,
+  #                           singularSubsets = NULL,
+  #                           dimension = sum(w1$d > tol),
+  #                           hyperplane = w1$v[, which(w1$d == min(w1$d))[1]])
+  #   class(returned.result) <- c("mrfDepth", "hdepth")
+  #   return(returned.result)
+  # }
 
   #####
   #Do the calculations
