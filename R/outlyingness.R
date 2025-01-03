@@ -163,7 +163,7 @@ outlyingness <- function(x, z=NULL, options=list()) {
 
   # #####
   # # Check data for possible exact fit situations.
-  # tol <- 1e-7
+  tol <- 1e-7
   # w1 <- try(svd(scale(x) / sqrt(n1 - 1)), silent = TRUE)
   # if (!is.list(w1)) {
   #   warning("The singular-value decomposition of the data matrix x

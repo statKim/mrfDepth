@@ -42,7 +42,7 @@ projdepth <- function(x, z = NULL, options = list()) {
 
   # #####
   # # Check data for possible exact fit situations.
-  # tol <- 1e-7
+  tol <- 1e-7
   # scaled.x <- scale(x)
   # temp <- attributes(scaled.x)
   # column.sd <- temp[["scaled:scale"]]
