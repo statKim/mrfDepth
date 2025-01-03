@@ -173,7 +173,8 @@ hdepth <- function(x, z = NULL, options = list()){
   #####
   #Do the calculations
 
-  else if (p == 2 & approx == FALSE) {
+  # else if (p == 2 & approx == FALSE) {
+  if (p == 2 & approx == FALSE) {
     result <- .Fortran("HSDEP2",
                      as.double(z[, 1, drop = TRUE]), #1 First coordinate
                                                      #  of points to compute
