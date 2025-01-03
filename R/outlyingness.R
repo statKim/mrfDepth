@@ -161,39 +161,39 @@ outlyingness <- function(x, z=NULL, options=list()) {
     stop("The seed must be a strictly positive integer.")
   }
 
-  #####
-  # Check data for possible exact fit situations.
-  tol <- 1e-7
-  w1 <- try(svd(scale(x) / sqrt(n1 - 1)), silent = TRUE)
-  if (!is.list(w1)) {
-    warning("The singular-value decomposition of the data matrix x
-            could not be computed.")
-    returned.result <- list(outlyingnessX = NULL,
-                            outlyingnessZ = NULL,
-                            cutoff = NULL,
-                            flagX = NULL,
-                            flagZ = NULL,
-                            singularSubsets = NULL,
-                            dimension = NULL,
-                            hyperplane = NULL,
-                            inSubspace = NULL)
-    class(returned.result) <- c("mrfDepth", "outlyingness")
-    return(returned.result)
-  }
-  if (min(w1$d) < tol) {
-    warning("An exact fit was found. Check the output for more details.")
-    returned.result <- list(outlyingnessX = NULL,
-                            outlyingnessZ = NULL,
-                            cutoff = NULL,
-                            flagX = NULL,
-                            flagZ = NULL,
-                            singularSubsets = NULL,
-                            dimension = sum(w1$d > tol),
-                            hyperplane = w1$v[, which(w1$d == min(w1$d))[1]],
-                            inSubspace = NULL)
-    class(returned.result) <- c("mrfDepth", "outlyingness")
-    return(returned.result)
-  }
+  # #####
+  # # Check data for possible exact fit situations.
+  # tol <- 1e-7
+  # w1 <- try(svd(scale(x) / sqrt(n1 - 1)), silent = TRUE)
+  # if (!is.list(w1)) {
+  #   warning("The singular-value decomposition of the data matrix x
+  #           could not be computed.")
+  #   returned.result <- list(outlyingnessX = NULL,
+  #                           outlyingnessZ = NULL,
+  #                           cutoff = NULL,
+  #                           flagX = NULL,
+  #                           flagZ = NULL,
+  #                           singularSubsets = NULL,
+  #                           dimension = NULL,
+  #                           hyperplane = NULL,
+  #                           inSubspace = NULL)
+  #   class(returned.result) <- c("mrfDepth", "outlyingness")
+  #   return(returned.result)
+  # }
+  # if (min(w1$d) < tol) {
+  #   warning("An exact fit was found. Check the output for more details.")
+  #   returned.result <- list(outlyingnessX = NULL,
+  #                           outlyingnessZ = NULL,
+  #                           cutoff = NULL,
+  #                           flagX = NULL,
+  #                           flagZ = NULL,
+  #                           singularSubsets = NULL,
+  #                           dimension = sum(w1$d > tol),
+  #                           hyperplane = w1$v[, which(w1$d == min(w1$d))[1]],
+  #                           inSubspace = NULL)
+  #   class(returned.result) <- c("mrfDepth", "outlyingness")
+  #   return(returned.result)
+  # }
 
   #####
   #Do the actual computations
