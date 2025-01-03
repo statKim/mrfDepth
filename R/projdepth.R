@@ -78,7 +78,7 @@ projdepth <- function(x, z = NULL, options = list()) {
     # return(returned.result)
   }
   if (min(w1$d) < tol) {
-    warning("An exact fit was found. Check the output for more details.")
+    # warning("An exact fit was found. Check the output for more details.")
     # returned.result <- list(depthX = NULL,
     #                         depthZ = NULL,
     #                         cutoff = NULL,
